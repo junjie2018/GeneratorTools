@@ -1,0 +1,5 @@
+tools:
+#  template-directory: 'templates'
+  template-directory: 'classpath:templates/'
+  enum-comment-pattern: '^([A-Za-z\u4e00-\u9fa5 ]{1,})（(([A-Za-z0-9-]+：[\u4e00-\u9fa5A-Za-z0-9-]{1,}，?)+)）$'
+  number-pattern: '^[0-9]*$'
