@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ToolsPropertiesTest {
 
-    @Autowired
+
     private ToolsProperties toolsProperties;
 
     @Test

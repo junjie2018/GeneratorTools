@@ -1,0 +1,76 @@
+templates:
+  - template: "${beanClass}.ftl"
+    module: ${project.modules.server}
+    packet: ${packages.service}
+    packets-to-import:
+      - ${packages.request}
+      - ${packages.response}
+
+#  - template: "${beanClass}Service.ftl"
+#    module: ${project.modules.server}
+#    output-directory: ${tools-config.properties.server-directory}\service
+#    output-filename: ${beanClass}Service.java
+#    properties:
+#      package: ${tools-config.properties.service-package}
+#    packages-to-import:
+#      - ${tools-config.properties.mapper-package}.*
+#      - ${tools-config.properties.entity-package}.*
+#      - ${tools-config.properties.request-package}.*
+#      - ${tools-config.properties.response-package}.*
+#      - com.sdstc.pdm.server.utils.PageUtils
+#
+#  - template-filename: Controller.ftl
+#    output-directory: ${tools-config.properties.server-directory}\controller
+#    output-filename: ${beanClass}Controller.java
+#    properties:
+#      package: ${tools-config.properties.controller-package}
+#    packages-to-import:
+#      - ${tools-config.properties.service-package}.*
+#      - ${tools-config.properties.request-package}.*
+#      - ${tools-config.properties.response-package}.*
+#
+#  - template-filename: CreateEntityRequest.ftl
+#    output-directory: ${tools-config.properties.common-directory}\request
+#    output-filename: Create${beanClass}Request.java
+#    properties:
+#      package: ${tools-config.properties.request-package}
+#
+#  - template-filename: EntityIdsRequest.ftl
+#    output-directory: ${tools-config.properties.common-directory}\request
+#    output-filename: ${beanClass}IdsRequest.java
+#    properties:
+#      package: ${tools-config.properties.request-package}
+#
+#  - template-filename: PageEntityRequest.ftl
+#    output-directory: ${tools-config.properties.common-directory}\request
+#    output-filename: Page${beanClass}Request.java
+#    properties:
+#      package: ${tools-config.properties.request-package}
+#
+#  - template-filename: EntityData.ftl
+#    output-directory: ${tools-config.properties.common-directory}\response
+#    output-filename: ${beanClass}Data.java
+#    properties:
+#      package: ${tools-config.properties.response-package}
+#
+#  - template-filename: UpdateEntityRequest.ftl
+#    output-directory: ${tools-config.properties.common-directory}\request
+#    output-filename: Update${beanClass}Request.java
+#    properties:
+#      package: ${tools-config.properties.request-package}
+#
+#  - template-filename: Entity.ftl
+#    output-directory: ${tools-config.properties.server-directory}\entity
+#    output-filename: ${beanClass}.java
+#    properties:
+#      package: ${tools-config.properties.entity-package}
+#    packages-to-import:
+#      - com.sdstc.core.base.model.BaseModel
+#
+#  - template-filename: Mapper.ftl
+#    output-directory: ${tools-config.properties.server-directory}\mapper
+#    output-filename: ${beanClass}Mapper.java
+#    properties:
+#      package: ${tools-config.properties.mapper-package}
+#    packages-to-import:
+#      - ${tools-config.properties.entity-package}.*

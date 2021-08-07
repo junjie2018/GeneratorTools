@@ -5,12 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-class TestPropertiesTest {
+class PropertiesTest {
 
     @Autowired
-    private TestProperties testProperties;
-    @Autowired
     private PackagesProperties packagesProperties;
+
+    @Autowired
+    private TemplatesProperties templatesProperties;
 
     @Test
     public void test() {

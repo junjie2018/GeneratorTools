@@ -8,11 +8,38 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "packages")
 public class PackagesProperties {
+    /**
+     * service包
+     */
     private String service;
+
+    /**
+     * mapper包
+     */
     private String mapper;
+
+    /**
+     * entity包
+     */
     private String entity;
+
+    /**
+     * request包
+     */
     private String request;
+
+    /**
+     * response包
+     */
     private String response;
+
+    /**
+     * enums包
+     */
     private String enums;
+
+    /**
+     * controller包
+     */
     private String controller;
 }

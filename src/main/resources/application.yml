@@ -1,35 +1,11 @@
+spring:
+  profiles:
+    active: templates, csc
+
 tools:
   template-directory: 'classpath:templates'
   enum-comment-pattern: '^([A-Za-z\u4e00-\u9fa5 ]{1,})（(([A-Za-z0-9-]+：[\u4e00-\u9fa5A-Za-z0-9-]{1,}，?)+)）$'
   number-pattern: '^[0-9]*$'
-
-project:
-  name: csc
-  directory: xxx
-  modules:
-    server: xxx
-    common: xxx
-
-#test:
-#  field: '''abc'''
-
-packages:
-  service: com.sdstc.csc.server.service
-  mapper: com.sdstc.csc.server.mapper
-  entity: com.sdstc.csc.server.entity
-  request: com.sdstc.csc.common.request
-  response: com.sdstc.csc.common.response
-  enums: com.sdstc.csc.common.enums
-  controller: com.sdstc.csc.server.controller
-
-templates:
-  - template: "${beanClass}.ftl"
-    module: ${project.modules.server}
-    package: ${packages.service}
-    packages-to-import:
-      - ${packages.request}
-      - ${packages.response}
-
 
 
 
@@ -47,3 +23,4 @@ templates:
 #  - table-name: xxx
 #    logic-name: xxx
 #    template-to-generate: [ controller,service,create-entity-request ]
+

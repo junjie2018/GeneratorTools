@@ -1,0 +1,13 @@
+project:
+  root-directory: xxx
+  server-module: xxx
+  common-module: xxx
+
+packages:
+  service: com.sdstc.csc.server.service
+  mapper: com.sdstc.csc.server.mapper
+  entity: com.sdstc.csc.server.entity
+  request: com.sdstc.csc.common.request
+  response: com.sdstc.csc.common.response
+  enums: com.sdstc.csc.common.enums
+  controller: com.sdstc.csc.server.controller
