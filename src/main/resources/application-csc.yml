@@ -3,6 +3,21 @@ project:
   server-module: xxx
   common-module: xxx
 
+tables:
+  - table-name: xxx
+    logic-name: xxx
+    entity-name: xxx
+    templates-exclude: controller,service,create-entity-request
+
+templates:
+  service:
+    template: "${beanClass}.ftl"
+    module: 自定义Module
+    packet: 自定义Packet
+    packets-to-import:
+      - 不用导入包1
+      - 不用导入包2
+
 packages:
   service: com.sdstc.csc.server.service
   mapper: com.sdstc.csc.server.mapper
@@ -11,3 +26,4 @@ packages:
   response: com.sdstc.csc.common.response
   enums: com.sdstc.csc.common.enums
   controller: com.sdstc.csc.server.controller
+

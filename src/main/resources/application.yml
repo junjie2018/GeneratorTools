@@ -7,20 +7,9 @@ tools:
   enum-comment-pattern: '^([A-Za-z\u4e00-\u9fa5 ]{1,})（(([A-Za-z0-9-]+：[\u4e00-\u9fa5A-Za-z0-9-]{1,}，?)+)）$'
   number-pattern: '^[0-9]*$'
 
+table:
+  prefix: t_
+  default-primary-key: id
 
 
-
-#
-#  table-prefix: t_
-#  default-primary-key: id
-#
-#  server-directory: D:\Project\customer-service-center\csc-server\src\main\java\com\sdstc\csc\server
-#  common-directory: D:\Project\customer-service-center\csc-common\src\main\java\com\sdstc\csc\common
-#
-#
-#
-#tables:
-#  - table-name: xxx
-#    logic-name: xxx
-#    template-to-generate: [ controller,service,create-entity-request ]
 

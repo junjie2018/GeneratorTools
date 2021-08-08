@@ -10,12 +10,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 @Component
 public class TemplatesProperties implements ApplicationContextAware {
 
-    private List<Template> templates;
+    private Map<String, Template> templates;
 
     @Data
     public static class Template {
@@ -45,7 +46,7 @@ public class TemplatesProperties implements ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         //noinspection unchecked
-        templates = (List<Template>) applicationContext.getBean("templates");
+        templates = (Map<String, Template>) applicationContext.getBean("templates");
     }
 
     @Configuration
@@ -53,7 +54,7 @@ public class TemplatesProperties implements ApplicationContextAware {
 
         @Bean
         @ConfigurationProperties(prefix = "templates")
-        public List<Template> templates(List<Template> templates) {
+        public Map<String, Template> templates(Map<String, Template> templates) {
             return templates;
         }
 

@@ -1,9 +1,6 @@
 package com.example.generator.tools;
 
-import com.example.generator.tools.properties.PackagesProperties;
-import com.example.generator.tools.properties.ProjectProperties;
-import com.example.generator.tools.properties.TemplatesProperties;
-import com.example.generator.tools.properties.ToolsProperties;
+import com.example.generator.tools.properties.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,6 +15,7 @@ public class GeneratorToolsApplication {
         ProjectProperties bean2 = context.getBean(ProjectProperties.class);
         PackagesProperties bean3 = context.getBean(PackagesProperties.class);
         TemplatesProperties bean4 = context.getBean(TemplatesProperties.class);
+        TableProperties bean5 = context.getBean(TableProperties.class);
         System.out.println("");
     }
 
