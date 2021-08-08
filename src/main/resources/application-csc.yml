@@ -2,10 +2,10 @@ project:
   root-directory: xxx
   server-module: xxx
   common-module: xxx
+  table-prefix: xxx
 
 tables:
-  - table-name: xxx
-    logic-name: xxx
+  - logic-name: xxx
     entity-name: xxx
     templates-exclude: controller,service,create-entity-request
 

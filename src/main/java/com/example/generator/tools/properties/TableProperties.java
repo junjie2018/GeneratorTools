@@ -20,10 +20,6 @@ public class TableProperties implements ApplicationContextAware {
 
     @Data
     public static class Table {
-        /**
-         * 表中文名称
-         */
-        private String tableName;
 
         /**
          * 表逻辑名称

@@ -31,4 +31,9 @@ public class ProjectProperties {
      */
     private String commonModule;
 
+    /**
+     * 表名前缀
+     */
+    private String tablePrefix;
+
 }
