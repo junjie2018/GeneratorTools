@@ -6,15 +6,18 @@ spring:
     url: jdbc:postgresql://192.168.19.12:5432/csc?stringtype=unspecified
 
 project:
-  root-directory: xxx
-  server-module: xxx
-  common-module: xxx
-  table-prefix: xxx
+  root-directory: 'D:\Project\customer-service-center'
+  server-module: csc-server
+  common-module: csc-client
+  table-prefix: t_
 
 tables:
-  - logic-name: xxx
-    entity-name: xxx
-    templates-exclude: controller,service,create-entity-request
+  - logic-name: t_order
+    entity-name: 订单
+  - logic-name: t_task
+    entity-name: 任务
+  - logic-name: t_color_atla
+    entity-name: 色卡
 
 templates:
   service:

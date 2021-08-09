@@ -56,6 +56,6 @@ public class Table {
     /**
      * 表中所拥有的内部Bean
      */
-    private List<String> internalBeans;
+    private List<InternalBean> internalBeans;
 
 }

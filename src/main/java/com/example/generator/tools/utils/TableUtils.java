@@ -14,6 +14,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
@@ -28,6 +29,7 @@ import static com.example.generator.tools.utils.JStringUtils.*;
 import static com.example.generator.tools.utils.JStringUtils.underlineToCamelWithCapitalized;
 
 @Slf4j
+@Component
 public class TableUtils implements ApplicationContextAware {
 
     private static JdbcTemplate jdbcTemplate;
@@ -45,6 +47,7 @@ public class TableUtils implements ApplicationContextAware {
 
                 List<Column> columns = new ArrayList<>();
                 List<Enumeration> enumerations = new ArrayList<>();
+                List<InternalBean> internalBeans = new ArrayList<>();
 
                 for (ColumnInTable columnInTable : tableInDb.getColumns()) {
 
@@ -69,7 +72,8 @@ public class TableUtils implements ApplicationContextAware {
                                 .build();
                         // 生成代码时fieldType暂时还是用JSONObject
                         // fieldType=internalBean.getBeanClass();
-                        fieldType = "JSONObject";
+                        fieldType = JAVA_TYPE_JSON;
+                        internalBeans.add(internalBean);
 
                     } else {
                         switch (DataType.convert(columnInTable.getType())) {
@@ -107,6 +111,7 @@ public class TableUtils implements ApplicationContextAware {
                         .beanObject(underlineToCamelWithUncapitalized(removeTableNamePrefix(tableInDb.getName())))
                         .columns(columns)
                         .enumerations(enumerations)
+                        .internalBeans(internalBeans)
                         .build());
             }
 
@@ -182,6 +187,7 @@ public class TableUtils implements ApplicationContextAware {
 
     private static List<TableInDb> getTableInDbs() throws Exception {
 
+        assertNotNull(jdbcTemplate, "jdbcTemplate不能为空");
         assertNotNull(jdbcTemplate.getDataSource(), "获取数据源失败");
 
         List<TableInDb> tableInDbs = new ArrayList<>();
@@ -191,17 +197,15 @@ public class TableUtils implements ApplicationContextAware {
                 .getConnection()
                 .getMetaData();
 
-        // todo 这块需要连接数据库调试，我需要的是获取所有的表
         ResultSet tables = dbMetaData.getTables(
                 null, null,
                 null, new String[]{PG_TYPES_TABLE});
-
 
         // 获取表信息
         while (tables.next()) {
             TableInDb tableInDb = TableInDb.builder()
                     .name(tables.getString(PG_FLAG_TABLE_NAME))
-                    .name(tables.getString(PG_FLAG_REMARKS))
+                    .comment(tables.getString(PG_FLAG_REMARKS))
                     .columns(new ArrayList<>())
                     .build();
 
