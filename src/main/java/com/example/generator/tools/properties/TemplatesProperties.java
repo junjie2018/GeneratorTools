@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -54,8 +55,8 @@ public class TemplatesProperties implements ApplicationContextAware {
 
         @Bean
         @ConfigurationProperties(prefix = "templates")
-        public Map<String, Template> templates(Map<String, Template> templates) {
-            return templates;
+        public Map<String, Template> templates() {
+            return new HashMap<>(0);
         }
 
     }

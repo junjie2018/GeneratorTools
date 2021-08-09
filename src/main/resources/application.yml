@@ -12,4 +12,24 @@ table:
   default-primary-key: id
 
 
+templates:
+  service:
+    template: "${beanClass}.ftl"
+    module: ${project.server-module}
+    packet: ${packages.service}
+    packets-to-import:
+      - ${packages.request}
+      - ${packages.response}
 
+  controller:
+    template: "${beanClass}.ftl"
+    module: ${project.modules.server}
+    packet: ${packages.service}
+    packets-to-import:
+      - ${packages.request}
+      - ${packages.response}
+
+tables:
+  - logic-name: xxx
+    entity-name: xxx
+    templates-exclude: controller,service,create-entity-request

@@ -1,6 +1,8 @@
 package com.example.generator.tools.properties;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationContext;
@@ -9,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -41,15 +44,16 @@ public class TableProperties implements ApplicationContextAware {
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         //noinspection unchecked
         tables = (List<Table>) applicationContext.getBean("tables");
+        System.out.println("");
     }
 
     @Configuration
     public static class TablePropertiesConfiguration {
 
-        @Bean()
+        @Bean
         @ConfigurationProperties(prefix = "tables")
-        public List<Table> tables(List<Table> tables) {
-            return tables;
+        public List<Table> tables() {
+            return new ArrayList<>(0);
         }
     }
 
