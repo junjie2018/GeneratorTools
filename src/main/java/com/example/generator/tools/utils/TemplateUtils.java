@@ -28,12 +28,6 @@ public class TemplateUtils implements ApplicationContextAware {
     public static ProjectProperties projectProperties;
     public static ToolsProperties toolsProperties;
 
-    public static
-
-    public static void test() {
-
-    }
-
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 
@@ -49,23 +43,23 @@ public class TemplateUtils implements ApplicationContextAware {
 
     private void loadTemplate() {
 
-        // 加载默认文件夹中的内容
-        FileUtils.walkThrough(Paths.get(toolsProperties.getTemplateDirectory().toString(), "_default"), path -> {
-
-        });
-
-
-
-        // 加载项目文件夹中的内容，并覆盖默认文件夹中的模板配置
-
-
-        Set<String> activeProfiles =
-                new HashSet<String>(Arrays.asList(applicationContext.getEnvironment().getActiveProfiles()));
-
-        FileUtils.listDirectories(toolsProperties.getTemplateDirectory(), path -> {
-            Path fileName = path.getFileName();
-            System.out.println("");
-        });
+//        // 加载默认文件夹中的内容
+//        FileUtils.walkThrough(Paths.get(toolsProperties.getTemplateDirectory().toString(), "_default"), path -> {
+//
+//        });
+//
+//
+//
+//        // 加载项目文件夹中的内容，并覆盖默认文件夹中的模板配置
+//
+//
+//        Set<String> activeProfiles =
+//                new HashSet<String>(Arrays.asList(applicationContext.getEnvironment().getActiveProfiles()));
+//
+//        FileUtils.listDirectories(toolsProperties.getTemplateDirectory(), path -> {
+//            Path fileName = path.getFileName();
+//            System.out.println("");
+//        });
 
     }
 }
