@@ -14,9 +14,12 @@ public class SystemConstant {
     public static final String PG_TYPES_TABLE = "TABLE";
 
     public static final String JAVA_TYPE_INTEGER = "Integer";
+    public static final String JAVA_TYPE_DECIMAL = "Integer";
     public static final String JAVA_TYPE_STRING = "String";
     public static final String JAVA_TYPE_DATE = "LocalDateTime";
     public static final String JAVA_TYPE_JSON = "JSONObject";
+
+    public static final String SUFFIX_OF_TEMPLATES_CONFIG_FILE = "templates";
 
     static {
 

@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+@SuppressWarnings("ArraysAsListWithZeroOrOneArgument")
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum DataType {
     /**
@@ -21,6 +22,11 @@ public enum DataType {
     INT(Arrays.asList("int2", "int4", "int8")),
 
     /**
+     * numeric
+     */
+    NUMERIC(Collections.singletonList("numeric")),
+
+    /**
      * jsonb
      */
     JSONB(Collections.singletonList("jsonb")),
@@ -32,7 +38,7 @@ public enum DataType {
     ;
 
     @Getter
-    private List<String> typeNameFromJdbcTemplate;
+    private final List<String> typeNameFromJdbcTemplate;
 
 
     public static DataType convert(String typeName) {

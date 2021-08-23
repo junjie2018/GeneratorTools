@@ -1,19 +1,4 @@
-templates:
-  service:
-    template: "${beanClass}.ftl"
-    module: ${project.server-module}
-    packet: ${packages.service}
-    packets-to-import:
-      - ${packages.request}
-      - ${packages.response}
 
-  controller:
-    template: "${beanClass}.ftl"
-    module: ${project.modules.server}
-    packet: ${packages.service}
-    packets-to-import:
-      - ${packages.request}
-      - ${packages.response}
 
 #  - template: "${beanClass}Service.ftl"
 #    module: ${project.modules.server}

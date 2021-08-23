@@ -12,8 +12,8 @@ import org.springframework.test.context.ActiveProfiles;
 import java.util.List;
 
 @SpringBootTest
-@ActiveProfiles(profiles = {"templates", "csc"})
-public class CSCGenerator {
+@ActiveProfiles(profiles = {"templates", "srm"})
+public class SRMGenerator {
 
     public List<Table> tables;
 
@@ -23,7 +23,7 @@ public class CSCGenerator {
     }
 
     @Test
-    public void generateEntity() {
+    public void test() {
 
     }
 

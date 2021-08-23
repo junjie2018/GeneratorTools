@@ -86,6 +86,9 @@ public class TableUtils implements ApplicationContextAware {
                             case DATE:
                                 fieldType = JAVA_TYPE_DATE;
                                 break;
+                            case NUMERIC:
+                                fieldType = JAVA_TYPE_DECIMAL;
+                                break;
                             default:
                                 throw new RuntimeException("未准备的类型");
                         }

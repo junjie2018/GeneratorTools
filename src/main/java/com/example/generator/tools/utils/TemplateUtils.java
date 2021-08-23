@@ -15,18 +15,21 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Stream;
+
+import static com.example.generator.tools.constant.SystemConstant.SUFFIX_OF_TEMPLATES_CONFIG_FILE;
 
 @Slf4j
 @Component
 public class TemplateUtils implements ApplicationContextAware {
 
-    public static TemplatesProperties templatesProperties;
-    public static ProjectProperties projectProperties;
-    public static ToolsProperties toolsProperties;
+    private static TemplatesProperties templatesProperties;
+    private static ProjectProperties projectProperties;
+    private static ToolsProperties toolsProperties;
+
+    private static Map<String, Path> filenameToFilePath = new HashMap<>();
+
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -36,30 +39,28 @@ public class TemplateUtils implements ApplicationContextAware {
         toolsProperties = applicationContext.getBean(ToolsProperties.class);
 
 
-        applicationContext.getEnvironment().getActiveProfiles();
+        String[] activeProfiles = applicationContext.getEnvironment().getActiveProfiles();
 
-        loadTemplate();
+        // 去除templates配置，得到当前项目名称
+        HashSet<String> activeProfilesSet = new HashSet<>(Arrays.asList(activeProfiles));
+
+        if (activeProfilesSet.size() != 1) {
+            throw new RuntimeException("配置文件数量错误：" + activeProfilesSet);
+        }
+
+        loadTemplate((String) activeProfilesSet.toArray()[0]);
     }
 
-    private void loadTemplate() {
+    private void loadTemplate(String projectName) {
 
-//        // 加载默认文件夹中的内容
-//        FileUtils.walkThrough(Paths.get(toolsProperties.getTemplateDirectory().toString(), "_default"), path -> {
-//
-//        });
-//
-//
-//
-//        // 加载项目文件夹中的内容，并覆盖默认文件夹中的模板配置
-//
-//
-//        Set<String> activeProfiles =
-//                new HashSet<String>(Arrays.asList(applicationContext.getEnvironment().getActiveProfiles()));
-//
-//        FileUtils.listDirectories(toolsProperties.getTemplateDirectory(), path -> {
-//            Path fileName = path.getFileName();
-//            System.out.println("");
-//        });
+        // 加载默认文件夹中的内容
+        FileUtils.walkThrough(Paths.get(toolsProperties.getTemplateDirectory().toString(), "_default"), path -> {
+            filenameToFilePath.put(path.getFileName().toString(), path);
+        });
 
+        // 用项目配置中同名文件进行覆盖
+        FileUtils.walkThrough(Paths.get(toolsProperties.getTemplateDirectory().toString(), projectName), path -> {
+            filenameToFilePath.put(path.getFileName().toString(), path);
+        });
     }
 }
