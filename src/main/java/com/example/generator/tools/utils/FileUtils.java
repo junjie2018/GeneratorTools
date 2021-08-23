@@ -29,4 +29,18 @@ public class FileUtils {
             throw new RuntimeException(e);
         }
     }
+
+    public static void listDirectories(Path path, Consumer<Path> disposer) {
+        try {
+            Files.list(path).forEach(pathItem -> {
+                if (Files.isDirectory(pathItem)) {
+                    if (disposer != null) {
+                        disposer.accept(pathItem);
+                    }
+                }
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
