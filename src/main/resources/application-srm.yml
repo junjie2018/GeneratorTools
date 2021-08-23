@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: dev.DB
+    url: jdbc:postgresql://192.168.19.12:5432/srm?stringtype=unspecified
+
+project:
+  root-directory: 'C:\Users\wujj\Desktop\srm'
+  server-module: srm-server
+  common-module: srm-client
+  table-prefix: t_
+
+tables:
+  - logic-name: t_commany
+  - logic-name: t_supplier
+  - logic-name: t_invite
+  - logic-name: t_communication_record
+
+packages:
+  service: com.sdstc.srm.server.service
+  mapper: com.sdstc.srm.server.mapper
+  entity: com.sdstc.srm.server.entity
+  request: com.sdstc.srm.common.request
+  response: com.sdstc.srm.common.response
+  enums: com.sdstc.srm.common.enums
+  controller: com.sdstc.srm.server.controller
