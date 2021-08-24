@@ -1,5 +1,6 @@
 package com.example.generator.tools.generator;
 
+import com.example.generator.tools.domain.Enumeration;
 import com.example.generator.tools.domain.Table;
 import com.example.generator.tools.utils.TableUtils;
 import com.example.generator.tools.utils.TemplateUtils;
@@ -32,6 +33,10 @@ public class SRMGenerator {
         TemplateUtils.renderTpl("update-bean-class-request", tables.get(0));
         TemplateUtils.renderTpl("page-bean-class-request", tables.get(0));
         TemplateUtils.renderTpl("bean-class-data", tables.get(0));
+
+        for (Enumeration enumeration : tables.get(0).getEnumerations()) {
+            TemplateUtils.renderTpl("enum", enumeration);
+        }
     }
 
 }

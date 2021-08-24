@@ -18,14 +18,14 @@ public class ${beanClass}Data {
 
     <@noSpaceLine>
 
-    <#if column.enumInfo??>
+    <#if column.enumerations??>
 
     /**
      * ${column.comment}
      *
-     * @see ${properties.enumsPackage}.${column.enumInfo.enumClass}#value
+     * @see ${properties.enumsPackage}.${column.enumerations.enumClass}#value
      */
-    private ${column.enumInfo.enumValueType} ${column.beanObject};
+    private ${column.enumerations.enumValueType} ${column.beanObject};
 
     <#elseif column.internalClassInfo??>
 

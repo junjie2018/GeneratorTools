@@ -25,11 +25,8 @@ template-configs:
 
   enum:
     template: "${enumClass}.ftl"
-    module: ${project.server-module}
-    packet: ${packages.service}
-    packets-to-import:
-      - ${packages.request}
-      - ${packages.response}
+    module: ${project.common-module}
+    packet: ${packages.enums}
 
   bean-class-mapper:
     template: "${beanClass}Mapper.ftl"
@@ -47,6 +44,8 @@ template-configs:
     template: "Create${beanClass}Request.ftl"
     module: ${project.common-module}
     packet: ${packages.request}
+    packets-to-import:
+      - "${packages.enums}.*"
 
   page-bean-class-request:
     template: "Page${beanClass}Request.ftl"
@@ -57,11 +56,15 @@ template-configs:
     template: "Update${beanClass}Request.ftl"
     module: ${project.common-module}
     packet: ${packages.request}
+    packets-to-import:
+      - "${packages.enums}.*"
 
   bean-class-data:
     template: "${beanClass}Data.ftl"
     module: ${project.common-module}
     packet: ${packages.response}
+    packets-to-import:
+      - "${packages.enums}.*"
 
   bean-class-service:
     template: "${beanClass}Service.ftl"
@@ -72,4 +75,5 @@ template-configs:
       - "${packages.request}.*"
       - "${packages.response}.*"
       - "${packages.mapper}.*"
+      - "${packages.enums}.*"
       - "com.sdstc.core.utils.PageUtils"

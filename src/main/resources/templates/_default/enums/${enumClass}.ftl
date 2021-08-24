@@ -5,29 +5,29 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * ${enumComment}
+ * ${comment}
  *
  * @author wujj
  */
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public enum ${enumClass} {
 
-<#list enumItems as enumItem>
+    <#list enumItems as enumItem>
     /**
-     * ${enumItem.enumItemComment}
+     * ${enumItem.comment}
      */
-    <#if enumValueType=="String">
-    ${enumItem.enumItemName}("${enumItem.enumItemValue}"),
+    <#if itemType=="String">
+    ${enumItem.itemName}("${enumItem.itemValue}"),
     <#else>
-    ${enumItem.enumItemName}(${enumItem.enumItemValue}),
+    ${enumItem.itemName}(${enumItem.itemValue}),
     </#if>
-</#list>
+    </#list>
     ;
 
     @Getter
-    private ${enumValueType} value;
+    private ${itemType} value;
 
-    <#if enumValueType=="String">
+    <#if itemType=="String">
     public static ${enumClass} convert(String inputValue) {
     <#else>
     public static ${enumClass} convert(Integer inputValue) {

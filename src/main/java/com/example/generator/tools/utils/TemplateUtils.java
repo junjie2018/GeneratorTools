@@ -3,6 +3,7 @@ package com.example.generator.tools.utils;
 import com.example.generator.tools.directives.FragmentDirective;
 import com.example.generator.tools.directives.IncludeDirective;
 import com.example.generator.tools.directives.NoSpaceLineDiretive;
+import com.example.generator.tools.domain.Enumeration;
 import com.example.generator.tools.domain.Table;
 import com.example.generator.tools.properties.ProjectProperties;
 import com.example.generator.tools.properties.TemplateConfigsProperties;
@@ -157,26 +158,41 @@ public class TemplateUtils implements ApplicationContextAware {
     }
 
     public static void renderTpl(String templateKey, Table table) {
-        if (!templateConfigsProperties.getTemplateConfigs().containsKey(templateKey)) {
-            throw new RuntimeException("未配置该模板");
-        }
 
         TemplateConfigsProperties.TemplateConfig templateConfig = templateConfigsProperties
                 .getTemplateConfigs()
                 .get(templateKey);
 
+        AssertUtils.assertNotNull(templateConfig, "未配置该模板");
+
         try {
-            processRender(templateKey, templateConfig, table);
+            Map<String, Object> renderData = initMap(templateConfig, table);
+            processRender(templateKey, templateConfig, renderData);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
+    public static void renderTpl(String templateKey, Enumeration enumeration) {
+
+        TemplateConfigsProperties.TemplateConfig templateConfig = templateConfigsProperties
+                .getTemplateConfigs()
+                .get(templateKey);
+
+        AssertUtils.assertNotNull(templateConfig, "未配置该模板");
+
+        try {
+            Map<String, Object> renderData = initMap(templateConfig, enumeration);
+            processRender(templateKey, templateConfig, renderData);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     private static void processRender(String templateKey,
                                       TemplateConfigsProperties.TemplateConfig templateConfig,
-                                      Table table) throws IOException, TemplateException {
-
-        Map<String, Object> renderData = initMap(templateConfig, table);
+                                      Map<String, Object> renderData) throws IOException, TemplateException {
 
         // 得到输出文件的FileWriter
         Path outputDirectorPath = Paths.get(projectProperties.getRootDirectory(),
@@ -191,14 +207,12 @@ public class TemplateUtils implements ApplicationContextAware {
         Path outputFilePath =
                 Paths.get(outputDirectorPath.toString(), getOutputFileName(templateConfig.getTemplate(), renderData));
 
-        FileWriter fileWriter = new FileWriter(outputFilePath.toString());
-
         Template template = configuration.getTemplate(templateKey);
         if (template == null) {
             throw new RuntimeException("获取模板信息失败");
         }
 
-        template.process(renderData, new WriterWithOnlyOneSpaceLine(fileWriter));
+        template.process(renderData, new WriterWithOnlyOneSpaceLine(new FileWriter(outputFilePath.toString())));
     }
 
     private static Map<String, Object> initMap(TemplateConfigsProperties.TemplateConfig templateConfig, Table table) {
@@ -218,6 +232,25 @@ public class TemplateUtils implements ApplicationContextAware {
         renderDataMap.put("packetsToImport", templateConfig.getPacketsToImport());
 
         return renderDataMap;
+    }
+
+    private static Map<String, Object> initMap(TemplateConfigsProperties.TemplateConfig templateConfig, Enumeration enumeration) {
+
+        Map<String, Object> renderDataMap = new HashMap<>();
+
+        // Table
+        renderDataMap.put("enumClass", enumeration.getEnumClass());
+        renderDataMap.put("enumObject", enumeration.getEnumObject());
+        renderDataMap.put("comment", enumeration.getComment());
+        renderDataMap.put("itemType", enumeration.getItemType());
+        renderDataMap.put("enumItems", enumeration.getEnumItems());
+
+        // TemplatesProperties.TemplateConfig
+        renderDataMap.put("packet", templateConfig.getPacket());
+        renderDataMap.put("packetsToImport", templateConfig.getPacketsToImport());
+
+        return renderDataMap;
+
     }
 
     private static String getOutputFileName(String outputFilePattern, Map<String, Object> renderData) {

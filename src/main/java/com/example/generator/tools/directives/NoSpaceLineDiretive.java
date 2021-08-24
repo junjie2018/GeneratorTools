@@ -5,9 +5,9 @@ import freemarker.template.TemplateDirectiveBody;
 import freemarker.template.TemplateDirectiveModel;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateModel;
+import org.apache.commons.lang3.StringUtils;
 
-import java.io.IOException;
-import java.io.StringWriter;
+import java.io.*;
 import java.util.Map;
 
 public class NoSpaceLineDiretive implements TemplateDirectiveModel {
@@ -17,8 +17,23 @@ public class NoSpaceLineDiretive implements TemplateDirectiveModel {
 
         body.render(stringWriter);
 
-//        String result = TemplateUtilsMax.changeSpaceLinesToNone(stringWriter.toString());
+        env.getOut().write(removeSpaceLines(stringWriter.toString()));
+    }
 
-        env.getOut().write(stringWriter.toString());
+    private String removeSpaceLines(String inputStr) throws IOException {
+        StringWriter sw = new StringWriter();
+        BufferedWriter bw = new BufferedWriter(sw);
+        BufferedReader br = new BufferedReader(new StringReader(inputStr));
+
+        String line;
+        while ((line = br.readLine()) != null) {
+            if ("".equals(StringUtils.trim(line))) {
+                continue;
+            }
+            bw.write(line);
+            bw.newLine();
+        }
+        bw.flush();
+        return sw.toString();
     }
 }
