@@ -24,7 +24,7 @@ public class SRMGenerator {
 
     @Test
     public void test() {
-
+        TemplateUtils.renderTpl("bean-class-service", tables.get(0));
     }
 
 }

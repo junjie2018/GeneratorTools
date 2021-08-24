@@ -24,7 +24,7 @@ public class CSCGenerator {
 
     @Test
     public void generateEntity() {
-        TemplateUtils.renderTpl("service");
+        TemplateUtils.renderTpl("service", tables.get(0));
     }
 
 }

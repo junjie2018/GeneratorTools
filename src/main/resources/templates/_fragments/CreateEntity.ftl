@@ -31,22 +31,22 @@
 
         <@noSpaceLine>
         ${beanClass} ${beanObject}Insert = ${beanClass}.builder()
-                <#list columnInfos as columnInfo>
+                <#list columns as column>
 
-                <#if columnInfo.columnName == "org_id">
-                .${columnInfo.beanObject}(tenantId)<#continue>
+                <#if column.logicName == "org_id">
+                .${column.beanObject}(tenantId)<#continue>
                 </#if>
 
-                <#if columnInfo.columnName == "id"
-                        || columnInfo.columnName == "creator"
-                        || columnInfo.columnName == "modifier"
-                        || columnInfo.columnName == "is_delete"
-                        || columnInfo.columnName == "gmt_create_time"
-                        || columnInfo.columnName == "gmt_modify_time">
+                <#if column.logicName == "id"
+                        || column.logicName == "creator"
+                        || column.logicName == "modifier"
+                        || column.logicName == "is_delete"
+                        || column.logicName == "gmt_create_time"
+                        || column.logicName == "gmt_modify_time">
                     <#continue>
                 </#if>
 
-                .${columnInfo.beanObject}(request.get${columnInfo.beanClass}())
+                .${column.beanObject}(request.get${column.beanClass}())
 
                 </#list>
                 .build();

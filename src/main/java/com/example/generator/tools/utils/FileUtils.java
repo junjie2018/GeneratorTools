@@ -1,9 +1,14 @@
 package com.example.generator.tools.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class FileUtils {
@@ -25,6 +30,19 @@ public class FileUtils {
                     disposer.accept(pathItem);
                 }
             });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String readAllContent(String path) {
+        return readAllContent(Paths.get(path));
+    }
+
+    public static String readAllContent(Path path) {
+        try {
+            List<String> lines = Files.readAllLines(path);
+            return StringUtils.join(lines, '\n');
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

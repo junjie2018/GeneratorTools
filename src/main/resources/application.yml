@@ -8,17 +8,81 @@ table:
   default-primary-key: id
 
 template-configs:
-  service:
-    template: "${beanClass}.ftl"
-    module: ${project.server-module}
+  bean-class-controller:
+    template: "${beanClass}Controller.ftl"
+    module: ${project.modules.server}
     packet: ${packages.service}
     packets-to-import:
       - ${packages.request}
       - ${packages.response}
 
-  controller:
+  bean-class:
     template: "${beanClass}.ftl"
     module: ${project.modules.server}
+    packet: ${packages.service}
+    packets-to-import:
+      - ${packages.request}
+      - ${packages.response}
+
+  enum:
+    template: "${enumClass}.ftl"
+    module: ${project.modules.server}
+    packet: ${packages.service}
+    packets-to-import:
+      - ${packages.request}
+      - ${packages.response}
+
+  bean-class-mapper:
+    template: "${beanClass}Mapper.ftl"
+    module: ${project.modules.server}
+    packet: ${packages.service}
+    packets-to-import:
+      - ${packages.request}
+      - ${packages.response}
+
+  bean-class-ids-request:
+    template: "${beanClass}IdsRequest.ftl"
+    module: ${project.modules.server}
+    packet: ${packages.service}
+    packets-to-import:
+      - ${packages.request}
+      - ${packages.response}
+
+  create-bean-class-request:
+    template: "Create${beanClass}Request.ftl"
+    module: ${project.modules.server}
+    packet: ${packages.service}
+    packets-to-import:
+      - ${packages.request}
+      - ${packages.response}
+
+  page-bean-class-request:
+    template: "Page${beanClass}Request.ftl"
+    module: ${project.modules.server}
+    packet: ${packages.service}
+    packets-to-import:
+      - ${packages.request}
+      - ${packages.response}
+
+  update-bean-class-request:
+    template: "Update${beanClass}.ftl"
+    module: ${project.modules.server}
+    packet: ${packages.service}
+    packets-to-import:
+      - ${packages.request}
+      - ${packages.response}
+
+  bean-class-data:
+    template: "${beanClass}Data.ftl"
+    module: ${project.modules.server}
+    packet: ${packages.service}
+    packets-to-import:
+      - ${packages.request}
+      - ${packages.response}
+
+  bean-class-service:
+    template: "${beanClass}Service.ftl"
+    module: ${project.server-module}
     packet: ${packages.service}
     packets-to-import:
       - ${packages.request}

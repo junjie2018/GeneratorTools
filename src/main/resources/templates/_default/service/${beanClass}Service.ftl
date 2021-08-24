@@ -1,4 +1,4 @@
-package ${properties.package};
+package ${packet};
 
 import cn.hutool.core.bean.BeanUtil;
 import lombok.AllArgsConstructor;
@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDateTime;
 
-<#if packagesToImport??>
-<#list packagesToImport as packageToImport>
-import ${packageToImport};
+<#if packetsToImport??>
+<#list packetsToImport as packetToImport>
+import ${packetToImport};
 </#list>
 </#if>
 
