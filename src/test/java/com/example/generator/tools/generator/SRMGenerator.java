@@ -27,6 +27,11 @@ public class SRMGenerator {
         TemplateUtils.renderTpl("bean-class-service", tables.get(0));
         TemplateUtils.renderTpl("bean-class-mapper", tables.get(0));
         TemplateUtils.renderTpl("bean-class", tables.get(0));
+        TemplateUtils.renderTpl("bean-class-ids-request", tables.get(0));
+        TemplateUtils.renderTpl("create-bean-class-request", tables.get(0));
+        TemplateUtils.renderTpl("update-bean-class-request", tables.get(0));
+        TemplateUtils.renderTpl("page-bean-class-request", tables.get(0));
+        TemplateUtils.renderTpl("bean-class-data", tables.get(0));
     }
 
 }

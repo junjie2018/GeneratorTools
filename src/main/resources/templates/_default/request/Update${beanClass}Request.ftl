@@ -1,9 +1,9 @@
 package ${packet};
 
+import java.time.LocalDateTime;
 import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
-import java.time.LocalDateTime;
-import com.alibaba.fastjson.annotation.JSONField;
+import javax.validation.constraints.NotBlank;
 
 <#if packetsToImport??>
 <#list packetsToImport as packetToImport>
@@ -12,11 +12,20 @@ import ${packetToImport};
 </#if>
 
 @Data
-public class ${beanClass}Data {
+public class Update${beanClass}Request {
 
-    <#list columns as column>
-
+<#list columns as column>
     <@noSpaceLine>
+
+    <#-- 忽略审计字段 -->
+    <#if column.logicName == "org_id"
+        || column.logicName == "creator"
+        || column.logicName == "modifier"
+        || column.logicName == "is_delete"
+        || column.logicName == "gmt_create_time"
+        || column.logicName == "gmt_modify_time">
+        <#continue>
+    </#if>
 
     <#if column.enumInfo??>
 
@@ -25,6 +34,11 @@ public class ${beanClass}Data {
      *
      * @see ${properties.enumsPackage}.${column.enumInfo.enumClass}#value
      */
+
+    <#if column.logicName == "id">
+    @NotBlank
+    </#if>
+
     private ${column.enumInfo.enumValueType} ${column.beanObject};
 
     <#elseif column.internalClassInfo??>
@@ -39,12 +53,15 @@ public class ${beanClass}Data {
     /**
      * ${column.comment}
      */
+    <#if column.logicName == "id">
+    @NotBlank
+    </#if>
+
     private ${column.fieldType} ${column.beanObject};
 
     </#if>
 
     </@noSpaceLine>
 
-    </#list>
-
+</#list>
 }

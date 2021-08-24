@@ -13,43 +13,43 @@ import ${packetToImport};
 @Data
 public class Create${beanClass}Request {
 
-    <#list columnInfos as columnInfo>
+    <#list columns as column>
 
     <#-- 忽略审计字段 -->
-    <#if columnInfo.columnName == "id"
-        || columnInfo.columnName == "org_id"
-        || columnInfo.columnName == "creator"
-        || columnInfo.columnName == "modifier"
-        || columnInfo.columnName == "is_delete"
-        || columnInfo.columnName == "gmt_create_time"
-        || columnInfo.columnName == "gmt_modify_time">
+    <#if column.logicName == "id"
+        || column.logicName == "org_id"
+        || column.logicName == "creator"
+        || column.logicName == "modifier"
+        || column.logicName == "is_delete"
+        || column.logicName == "gmt_create_time"
+        || column.logicName == "gmt_modify_time">
         <#continue>
     </#if>
 
     <@noSpaceLine>
 
-    <#if columnInfo.enumInfo??>  <#-- 如果列为枚举类型 -->
+    <#if column.enumInfo??>  <#-- 如果列为枚举类型 -->
 
     /**
-     * ${columnInfo.columnComment}
+     * ${column.comment}
      *
-     * @see ${properties.enumsPackage}.${columnInfo.enumInfo.enumClass}#value
+     * @see ${properties.enumsPackage}.${column.enumInfo.enumClass}#value
      */
-    private ${columnInfo.enumInfo.enumValueType} ${columnInfo.beanObject};
+    private ${column.enumInfo.enumValueType} ${column.beanObject};
 
-     <#elseif columnInfo.internalClassInfo??>
+     <#elseif column.internalClassInfo??>
 
     /**
-     * ${columnInfo.columnComment}
+     * ${column.comment}
      */
-    private JSONObject ${columnInfo.beanObject};
+    private JSONObject ${column.beanObject};
 
     <#else><#-- 如果列为普通类型 -->
 
     /**
-     * ${columnInfo.columnComment}
+     * ${column.comment}
      */
-    private ${columnInfo.fieldType} ${columnInfo.beanObject};
+    private ${column.fieldType} ${column.beanObject};
 
     </#if>
 

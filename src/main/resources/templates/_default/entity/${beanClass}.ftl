@@ -23,41 +23,42 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("${tableName}")
+@EqualsAndHashCode(callSuper = true)
+@TableName("${logicName}")
 public class ${beanClass} extends BaseModel {
 
-     <#list columnInfos as columnInfo>
+     <#list columns as column>
 
      <@noSpaceLine>
 
-     <#if columnInfo.columnName == "id"
-        || columnInfo.columnName == "creator"
-        || columnInfo.columnName == "modifier"
-        || columnInfo.columnName == "is_delete"
-        || columnInfo.columnName == "gmt_create_time"
-        || columnInfo.columnName == "gmt_modify_time">
+     <#if column.logicName == "id"
+        || column.logicName == "creator"
+        || column.logicName == "modifier"
+        || column.logicName == "is_delete"
+        || column.logicName == "gmt_create_time"
+        || column.logicName == "gmt_modify_time">
         <#continue>
     </#if>
 
      /**
-      * ${columnInfo.columnComment}
+      * ${column.comment}
       */
 
-     <#if columnInfo.columnName == "id">
+     <#if column.logicName == "id">
      @TableId(type = IdType.ID_WORKER_STR)
      </#if>
 
-     <#if columnInfo.columnName == "is_delete">
+     <#if column.logicName == "is_delete">
      @TableLogic
      </#if>
 
-     <#if columnInfo.enumInfo??>
-     private ${columnInfo.enumInfo.enumValueType} ${columnInfo.beanObject};
-     <#elseif columnInfo.internalClassInfo??>
-     private JSONObject ${columnInfo.beanObject};
+     <#if column.enumInfo??>
+     private ${column.enumInfo.enumValueType} ${column.beanObject};
+     <#elseif column.internalClassInfo??>
+     private JSONObject ${column.beanObject};
 
 
-    <#else>private ${columnInfo.fieldType} ${columnInfo.beanObject};</#if>
+    <#else>private ${column.fieldType} ${column.beanObject};</#if>
 
      </@noSpaceLine>
 

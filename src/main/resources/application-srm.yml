@@ -8,7 +8,7 @@ spring:
 project:
   root-directory: 'C:\Users\wujj\Desktop\projects\srm'
   server-module: srm-server
-  common-module: srm-client
+  common-module: srm-common
   table-prefix: t_
 
 tables:

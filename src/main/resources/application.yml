@@ -19,10 +19,9 @@ template-configs:
   bean-class:
     template: "${beanClass}.ftl"
     module: ${project.server-module}
-    packet: ${packages.service}
+    packet: ${packages.entity}
     packets-to-import:
-      - ${packages.request}
-      - ${packages.response}
+      - "com.sdstc.core.base.model.BaseModel"
 
   enum:
     template: "${enumClass}.ftl"
@@ -37,53 +36,40 @@ template-configs:
     module: ${project.server-module}
     packet: ${packages.mapper}
     packets-to-import:
-      - ${packages.request}
-      - ${packages.response}
+      - "${packages.entity}.*"
 
   bean-class-ids-request:
     template: "${beanClass}IdsRequest.ftl"
-    module: ${project.server-module}
-    packet: ${packages.service}
-    packets-to-import:
-      - ${packages.request}
-      - ${packages.response}
+    module: ${project.common-module}
+    packet: ${packages.request}
 
   create-bean-class-request:
     template: "Create${beanClass}Request.ftl"
-    module: ${project.server-module}
-    packet: ${packages.service}
-    packets-to-import:
-      - ${packages.request}
-      - ${packages.response}
+    module: ${project.common-module}
+    packet: ${packages.request}
 
   page-bean-class-request:
     template: "Page${beanClass}Request.ftl"
-    module: ${project.server-module}
-    packet: ${packages.service}
-    packets-to-import:
-      - ${packages.request}
-      - ${packages.response}
+    module: ${project.common-module}
+    packet: ${packages.request}
 
   update-bean-class-request:
-    template: "Update${beanClass}.ftl"
-    module: ${project.server-module}
-    packet: ${packages.service}
-    packets-to-import:
-      - ${packages.request}
-      - ${packages.response}
+    template: "Update${beanClass}Request.ftl"
+    module: ${project.common-module}
+    packet: ${packages.request}
 
   bean-class-data:
     template: "${beanClass}Data.ftl"
-    module: ${project.server-module}
-    packet: ${packages.service}
-    packets-to-import:
-      - ${packages.request}
-      - ${packages.response}
+    module: ${project.common-module}
+    packet: ${packages.response}
 
   bean-class-service:
     template: "${beanClass}Service.ftl"
     module: ${project.server-module}
     packet: ${packages.service}
     packets-to-import:
-      - ${packages.request}
-      - ${packages.response}
+      - "${packages.entity}.*"
+      - "${packages.request}.*"
+      - "${packages.response}.*"
+      - "${packages.mapper}.*"
+      - "com.sdstc.core.utils.PageUtils"
