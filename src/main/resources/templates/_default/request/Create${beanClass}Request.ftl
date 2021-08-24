@@ -28,14 +28,14 @@ public class Create${beanClass}Request {
 
     <@noSpaceLine>
 
-    <#if column.enumInfo??>  <#-- 如果列为枚举类型 -->
+    <#if column.enumeration??>  <#-- 如果列为枚举类型 -->
 
     /**
      * ${column.comment}
      *
-     * @see ${properties.enumsPackage}.${column.enumInfo.enumClass}#value
+     * @see ${properties.enumsPackage}.${column.enumeration.enumClass}#value
      */
-    private ${column.enumInfo.enumValueType} ${column.beanObject};
+    private ${column.enumeration.enumValueType} ${column.beanObject};
 
      <#elseif column.internalClassInfo??>
 

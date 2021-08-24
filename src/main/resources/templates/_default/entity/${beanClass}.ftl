@@ -52,15 +52,15 @@ public class ${beanClass} extends BaseModel {
      @TableLogic
      </#if>
 
-     <#if column.enumInfo??>
-     private ${column.enumInfo.enumValueType} ${column.beanObject};
+     <#if column.enumeration??>
+     private ${column.enumeration.enumValueType} ${column.beanObject};
      <#elseif column.internalClassInfo??>
      private JSONObject ${column.beanObject};
 
 
     <#else>private ${column.fieldType} ${column.beanObject};</#if>
 
-     </@noSpaceLine>
+    </@noSpaceLine>
 
     </#list>
 

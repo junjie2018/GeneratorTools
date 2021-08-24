@@ -25,13 +25,11 @@ public enum ${enumClass} {
     ;
 
     @Getter
-    private ${itemType} value;
+    private final ${itemType} value;
 
+    <#-- 如果Value的类型为String -->
     <#if itemType=="String">
     public static ${enumClass} convert(String inputValue) {
-    <#else>
-    public static ${enumClass} convert(Integer inputValue) {
-    </#if>
         for (${enumClass} enumItem : ${enumClass}.values()) {
             if (enumItem.getValue().equals(inputValue)) {
                 return enumItem;
@@ -39,4 +37,16 @@ public enum ${enumClass} {
         }
         throw new RuntimeException("Enum Transfer Wrong.");
     }
+    <#-- 如果Value的类型为Integer -->
+    <#else>
+    public static ${enumClass} convert(Integer inputValue) {
+        for (${enumClass} enumItem : ${enumClass}.values()) {
+            if (enumItem.getValue().equals(inputValue)) {
+                return enumItem;
+            }
+        }
+        throw new RuntimeException("Enum Transfer Wrong.");
+    }
+    </#if>
+
 }

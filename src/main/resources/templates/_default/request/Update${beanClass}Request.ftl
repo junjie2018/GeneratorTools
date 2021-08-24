@@ -27,19 +27,19 @@ public class Update${beanClass}Request {
         <#continue>
     </#if>
 
-    <#if column.enumInfo??>
+    <#if column.enumeration??>
 
     /**
      * ${column.comment}
      *
-     * @see ${properties.enumsPackage}.${column.enumInfo.enumClass}#value
+     * @see ${properties.enumsPackage}.${column.enumeration.enumClass}#value
      */
 
     <#if column.logicName == "id">
     @NotBlank
     </#if>
 
-    private ${column.enumInfo.enumValueType} ${column.beanObject};
+    private ${column.enumeration.enumValueType} ${column.beanObject};
 
     <#elseif column.internalClassInfo??>
 
