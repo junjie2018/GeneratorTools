@@ -22,7 +22,7 @@ tables:
 templates:
   service:
     template: "${beanClass}.ftl"
-    module: 自定义Module
+    module: ${project.server-module}
     packet: 自定义Packet
     packets-to-import:
       - 不用导入包1

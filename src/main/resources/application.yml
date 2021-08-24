@@ -7,7 +7,7 @@ table:
   prefix: t_
   default-primary-key: id
 
-templates:
+template-configs:
   service:
     template: "${beanClass}.ftl"
     module: ${project.server-module}

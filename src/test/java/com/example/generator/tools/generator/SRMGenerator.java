@@ -12,7 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 import java.util.List;
 
 @SpringBootTest
-@ActiveProfiles(profiles = {"templates", "srm"})
+@ActiveProfiles(profiles = {"srm"})
 public class SRMGenerator {
 
     public List<Table> tables;

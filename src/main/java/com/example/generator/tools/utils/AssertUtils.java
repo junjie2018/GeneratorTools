@@ -6,4 +6,10 @@ public class AssertUtils {
             throw new RuntimeException(msg);
         }
     }
+
+    public static void assertNotEqual(int length, int targetLength, String msg) {
+        if (length != targetLength) {
+            throw new RuntimeException(msg);
+        }
+    }
 }

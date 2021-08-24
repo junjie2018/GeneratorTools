@@ -15,12 +15,12 @@ import java.util.Map;
 
 @Data
 @Component
-public class TemplatesProperties implements ApplicationContextAware {
+public class TemplateConfigsProperties implements ApplicationContextAware {
 
-    private Map<String, Template> templates;
+    private Map<String, TemplateConfig> templateConfigs;
 
     @Data
-    public static class Template {
+    public static class TemplateConfig {
 
         /**
          * 模板文件
@@ -47,15 +47,15 @@ public class TemplatesProperties implements ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         //noinspection unchecked
-        templates = (Map<String, Template>) applicationContext.getBean("templates");
+        templateConfigs = (Map<String, TemplateConfig>) applicationContext.getBean("templateConfigs");
     }
 
     @Configuration
     public static class TemplatesPropertiesInternalConfiguration {
 
         @Bean
-        @ConfigurationProperties(prefix = "templates")
-        public Map<String, Template> templates() {
+        @ConfigurationProperties(prefix = "template-configs")
+        public Map<String, TemplateConfig> templateConfigs() {
             return new HashMap<>(0);
         }
 
