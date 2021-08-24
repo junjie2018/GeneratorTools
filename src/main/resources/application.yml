@@ -10,7 +10,7 @@ table:
 template-configs:
   bean-class-controller:
     template: "${beanClass}Controller.ftl"
-    module: ${project.modules.server}
+    module: ${project.server-module}
     packet: ${packages.service}
     packets-to-import:
       - ${packages.request}
@@ -18,7 +18,7 @@ template-configs:
 
   bean-class:
     template: "${beanClass}.ftl"
-    module: ${project.modules.server}
+    module: ${project.server-module}
     packet: ${packages.service}
     packets-to-import:
       - ${packages.request}
@@ -26,7 +26,7 @@ template-configs:
 
   enum:
     template: "${enumClass}.ftl"
-    module: ${project.modules.server}
+    module: ${project.server-module}
     packet: ${packages.service}
     packets-to-import:
       - ${packages.request}
@@ -34,15 +34,15 @@ template-configs:
 
   bean-class-mapper:
     template: "${beanClass}Mapper.ftl"
-    module: ${project.modules.server}
-    packet: ${packages.service}
+    module: ${project.server-module}
+    packet: ${packages.mapper}
     packets-to-import:
       - ${packages.request}
       - ${packages.response}
 
   bean-class-ids-request:
     template: "${beanClass}IdsRequest.ftl"
-    module: ${project.modules.server}
+    module: ${project.server-module}
     packet: ${packages.service}
     packets-to-import:
       - ${packages.request}
@@ -50,7 +50,7 @@ template-configs:
 
   create-bean-class-request:
     template: "Create${beanClass}Request.ftl"
-    module: ${project.modules.server}
+    module: ${project.server-module}
     packet: ${packages.service}
     packets-to-import:
       - ${packages.request}
@@ -58,7 +58,7 @@ template-configs:
 
   page-bean-class-request:
     template: "Page${beanClass}Request.ftl"
-    module: ${project.modules.server}
+    module: ${project.server-module}
     packet: ${packages.service}
     packets-to-import:
       - ${packages.request}
@@ -66,7 +66,7 @@ template-configs:
 
   update-bean-class-request:
     template: "Update${beanClass}.ftl"
-    module: ${project.modules.server}
+    module: ${project.server-module}
     packet: ${packages.service}
     packets-to-import:
       - ${packages.request}
@@ -74,7 +74,7 @@ template-configs:
 
   bean-class-data:
     template: "${beanClass}Data.ftl"
-    module: ${project.modules.server}
+    module: ${project.server-module}
     packet: ${packages.service}
     packets-to-import:
       - ${packages.request}

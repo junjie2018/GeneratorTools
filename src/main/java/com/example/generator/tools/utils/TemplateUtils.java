@@ -179,9 +179,17 @@ public class TemplateUtils implements ApplicationContextAware {
         Map<String, Object> renderData = initMap(templateConfig, table);
 
         // 得到输出文件的FileWriter
-        Path outputFilePath = Paths.get(projectProperties.getRootDirectory(),
+        Path outputDirectorPath = Paths.get(projectProperties.getRootDirectory(),
                 templateConfig.getModule(),
-                getOutputFileName(templateConfig.getTemplate(), renderData));
+                "src/main/java",
+                templateConfig.getPacket().replace('.', '/'));
+
+        if (!Files.exists(outputDirectorPath)) {
+            Files.createDirectories(outputDirectorPath);
+        }
+
+        Path outputFilePath =
+                Paths.get(outputDirectorPath.toString(), getOutputFileName(templateConfig.getTemplate(), renderData));
 
         FileWriter fileWriter = new FileWriter(outputFilePath.toString());
 

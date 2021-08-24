@@ -1,13 +1,13 @@
-package ${properties.package};
+package ${packet};
 
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-<#if packagesToImport??>
-<#list packagesToImport as packageToImport>
-import ${packageToImport};
+<#if packetsToImport??>
+<#list packetsToImport as packetToImport>
+import ${packetToImport};
 </#list>
 </#if>
 

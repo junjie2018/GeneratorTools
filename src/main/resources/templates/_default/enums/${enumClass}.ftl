@@ -1,4 +1,4 @@
-package ${properties.package};
+package ${packet};
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

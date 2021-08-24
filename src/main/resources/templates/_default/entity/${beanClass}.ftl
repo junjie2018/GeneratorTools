@@ -1,4 +1,4 @@
-package ${properties.package};
+package ${packet};
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -8,9 +8,9 @@ import com.baomidou.mybatisplus.annotation.TableLogic;
 import java.time.LocalDateTime;
 import lombok.*;
 
-<#if packagesToImport??>
-<#list packagesToImport as packageToImport>
-import ${packageToImport};
+<#if packetsToImport??>
+<#list packetsToImport as packetToImport>
+import ${packetToImport};
 </#list>
 </#if>
 

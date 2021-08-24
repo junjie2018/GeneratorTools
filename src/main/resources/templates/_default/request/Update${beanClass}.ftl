@@ -1,13 +1,13 @@
-package ${properties.package};
+package ${packet};
 
 import java.time.LocalDateTime;
 import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
 import javax.validation.constraints.NotBlank;
 
-<#if packagesToImport??>
-<#list packagesToImport as packageToImport>
-import ${packageToImport};
+<#if packetsToImport??>
+<#list packetsToImport as packetToImport>
+import ${packetToImport};
 </#list>
 </#if>
 

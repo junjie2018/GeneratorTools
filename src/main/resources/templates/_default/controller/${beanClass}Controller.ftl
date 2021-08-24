@@ -1,4 +1,4 @@
-package ${properties.package};
+package ${packet};
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-<#if packagesToImport??>
-<#list packagesToImport as packageToImport>
-import ${packageToImport};
+<#if packetsToImport??>
+<#list packetsToImport as packetToImport>
+import ${packetToImport};
 </#list>
 </#if>
 

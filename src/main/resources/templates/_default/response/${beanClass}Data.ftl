@@ -1,9 +1,15 @@
-package ${properties.package};
+package ${packet};
 
 import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
 import java.time.LocalDateTime;
 import com.alibaba.fastjson.annotation.JSONField;
+
+<#if packetsToImport??>
+<#list packetsToImport as packetToImport>
+import ${packetToImport};
+</#list>
+</#if>
 
 @Data
 public class ${beanClass}Data {
