@@ -5,62 +5,63 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.TableLogic;
+
 import java.time.LocalDateTime;
+
 import lombok.*;
 
 <#if packetsToImport??>
-<#list packetsToImport as packetToImport>
-import ${packetToImport};
-</#list>
+    <#list packetsToImport as packetToImport>
+        import ${packetToImport};
+    </#list>
 </#if>
 
 import java.io.Serializable;
 
 /**
- * @author wujj
- */
+* @author wujj
+*/
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @TableName("${logicName}")
-public class ${beanClass} extends BaseModel {
+public class ${beanClass} extends BaseModel{
 
-     <#list columns as column>
+    <#list columns as column>
 
-     <@noSpaceLine>
-
-     <#if column.logicName == "id"
+        <#-- 忽略字段 -->
+        <#if column.logicName == "id"
         || column.logicName == "creator"
         || column.logicName == "modifier"
         || column.logicName == "is_delete"
         || column.logicName == "gmt_create_time"
         || column.logicName == "gmt_modify_time">
-        <#continue>
-    </#if>
+            <#continue>
+        </#if>
 
-     /**
-      * ${column.comment}
-      */
+        <#-- 枚举字段 -->
+        <#if column.enumeration ??>
+        /**
+         * ${column.comment}
+         */
+        private ${column.enumeration.itemType} ${column.beanObject};<#continue>
+        </#if>
 
-     <#if column.logicName == "id">
-     @TableId(type = IdType.ID_WORKER_STR)
-     </#if>
+        <#-- 内部类字段 -->
+        <#if column.internalBean ??>
+        /**
+         * ${column.comment}
+         */
+        private JSONObject ${column.beanObject};<#continue>
+        </#if>
 
-     <#if column.logicName == "is_delete">
-     @TableLogic
-     </#if>
-
-     <#if column.enumeration??>
-     private ${column.enumeration.enumValueType} ${column.beanObject};
-     <#elseif column.internalClassInfo??>
-     private JSONObject ${column.beanObject};
-
-
-    <#else>private ${column.fieldType} ${column.beanObject};</#if>
-
-    </@noSpaceLine>
+        <#-- 其他字段 -->
+       /**
+        * ${column.comment}
+        */
+       private ${column.fieldType} ${column.beanObject};
 
     </#list>
 

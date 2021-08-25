@@ -34,3 +34,20 @@
     }
 
 </@fragment>
+
+<@fragment name="ServiceMethod2">
+
+    /**
+     * 更新${entityName}
+     */
+    public void update${beanClass}(String tenantId, Update${beanClass}Request request) {
+        judge${beanClass}ExistById(request.getId());
+
+        ${beanClass} ${beanObject}Update = BeanUtil.copyProperties(request, ${beanClass}.class);
+
+        ${beanObject}Update.setId(request.getId());
+
+        ${beanObject}Mapper.updateById(${beanObject}Update);
+    }
+
+</@fragment>

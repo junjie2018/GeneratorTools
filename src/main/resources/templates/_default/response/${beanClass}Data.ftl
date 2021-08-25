@@ -16,16 +16,16 @@ public class ${beanClass}Data {
 
     <#list columns as column>
 
-    <@noSpaceLine>
+
 
     <#if column.enumerations??>
 
     /**
      * ${column.comment}
      *
-     * @see ${properties.enumsPackage}.${column.enumerations.enumClass}#value
+     * @see ${packagesProperties.enums}.${column.enumerations.enumClass}#value
      */
-    private ${column.enumerations.enumValueType} ${column.beanObject};
+    private ${column.enumerations.itemType} ${column.beanObject};
 
     <#elseif column.internalClassInfo??>
 
@@ -43,7 +43,7 @@ public class ${beanClass}Data {
 
     </#if>
 
-    </@noSpaceLine>
+
 
     </#list>
 

@@ -6,62 +6,59 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 
 <#if packetsToImport??>
-<#list packetsToImport as packetToImport>
+    <#list packetsToImport as packetToImport>
 import ${packetToImport};
-</#list>
+    </#list>
 </#if>
 
 @Data
 public class Update${beanClass}Request {
 
-<#list columns as column>
-    <@noSpaceLine>
+    <#list columns as column>
 
-    <#-- 忽略审计字段 -->
-    <#if column.logicName == "org_id"
+        <#-- 忽略字段 -->
+        <#if column.logicName == "org_id"
         || column.logicName == "creator"
         || column.logicName == "modifier"
         || column.logicName == "is_delete"
         || column.logicName == "gmt_create_time"
         || column.logicName == "gmt_modify_time">
-        <#continue>
-    </#if>
+            <#continue>
+        </#if>
 
-    <#if column.enumeration??>
+        <#-- 枚举类型 -->
+        <#if column.enumeration??>
 
-    /**
-     * ${column.comment}
-     *
-     * @see ${properties.enumsPackage}.${column.enumeration.enumClass}#value
-     */
+        /**
+         * ${column.comment}
+         *
+         * @see ${packagesProperties.enums}.${column.enumeration.enumClass}#value
+         */
 
-    <#if column.logicName == "id">
-    @NotBlank
-    </#if>
+            <#if column.logicName == "id">
+        @NotBlank
+            </#if>
 
-    private ${column.enumeration.enumValueType} ${column.beanObject};
+        private ${column.enumeration.itemType} ${column.beanObject};
 
-    <#elseif column.internalClassInfo??>
+        <#elseif column.internalClassInfo??>
 
-    /**
-     * ${column.comment}
-     */
-    private JSONObject ${column.beanObject};
+        /**
+         * ${column.comment}
+         */
+        private JSONObject ${column.beanObject};
 
-    <#else>
+        <#else>
 
-    /**
-     * ${column.comment}
-     */
-    <#if column.logicName == "id">
-    @NotBlank
-    </#if>
+        /**
+         * ${column.comment}
+         */
+            <#if column.logicName == "id">
+        @NotBlank
+            </#if>
 
-    private ${column.fieldType} ${column.beanObject};
+        private ${column.fieldType} ${column.beanObject};
 
-    </#if>
-
-    </@noSpaceLine>
-
-</#list>
+        </#if>
+    </#list>
 }

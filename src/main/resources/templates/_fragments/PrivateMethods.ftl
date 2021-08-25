@@ -34,3 +34,38 @@
     }
 
 </@fragment>
+
+<@fragment name="judgeEntityExistByIds">
+
+    private List<${beanClass}> judge${beanClass}ExistByIds(List<String> ids) {
+        LambdaQueryWrapper<${beanClass}> queryWrapper = new LambdaQueryWrapper<${beanClass}>()
+                .in(${beanClass}::getId, ids);
+
+        List<${beanClass}> ${beanObject}List = ${beanObject}Mapper.selectList(queryWrapper);
+
+        if (${beanObject}List.size() != ids.size()) {
+            throw new RuntimeException("Wrong");
+        }
+
+        return ${beanObject}List;
+    }
+
+</@fragment>
+
+<@fragment name="judgeEntityExistById">
+
+    public ${beanClass} judge${beanClass}ExistById(String ${beanObject}Id) {
+        LambdaQueryWrapper<${beanClass}> queryWrapper = new LambdaQueryWrapper<${beanClass}>()
+                .eq(${beanClass}::getId, ${beanObject}Id)
+                .select(${beanClass}::getId);
+
+        ${beanClass} ${beanObject} = ${beanObject}Mapper.selectOne(queryWrapper);
+
+        if (${beanObject} == null) {
+            throw new RuntimeException("Wrong");
+        }
+
+        return ${beanObject};
+    }
+
+</@fragment>

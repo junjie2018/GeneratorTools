@@ -6,9 +6,9 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 <#if packetsToImport??>
-<#list packetsToImport as packetToImport>
-import ${packetToImport};
-</#list>
+    <#list packetsToImport as packetToImport>
+        import ${packetToImport};
+    </#list>
 </#if>
 
 @Data

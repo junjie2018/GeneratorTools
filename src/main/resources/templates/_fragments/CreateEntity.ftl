@@ -29,7 +29,7 @@
      */
     public String create${beanClass}(String userId, String tenantId, Create${beanClass}Request request) {
 
-        <@noSpaceLine>
+
         ${beanClass} ${beanObject}Insert = ${beanClass}.builder()
                 <#list columns as column>
 
@@ -50,7 +50,7 @@
 
                 </#list>
                 .build();
-        </@noSpaceLine>
+
 
         ${beanObject}Mapper.insert(${beanObject}Insert);
 

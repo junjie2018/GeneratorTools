@@ -36,4 +36,8 @@ public class ${beanClass}Service {
 
     <@include tpl="PrivateMethods.ftl" fragment="judgeEntityExistByIdsAndTenantId"/>
 
+    <@include tpl="PrivateMethods.ftl" fragment="judgeEntityExistById"/>
+
+    <@include tpl="PrivateMethods.ftl" fragment="judgeEntityExistByIds"/>
+
 }

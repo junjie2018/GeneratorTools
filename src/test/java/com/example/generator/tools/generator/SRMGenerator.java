@@ -25,17 +25,20 @@ public class SRMGenerator {
 
     @Test
     public void test() {
-        TemplateUtils.renderTpl("bean-class-service", tables.get(0));
-        TemplateUtils.renderTpl("bean-class-mapper", tables.get(0));
-        TemplateUtils.renderTpl("bean-class", tables.get(0));
-        TemplateUtils.renderTpl("bean-class-ids-request", tables.get(0));
-        TemplateUtils.renderTpl("create-bean-class-request", tables.get(0));
-        TemplateUtils.renderTpl("update-bean-class-request", tables.get(0));
-        TemplateUtils.renderTpl("page-bean-class-request", tables.get(0));
-        TemplateUtils.renderTpl("bean-class-data", tables.get(0));
 
-        for (Enumeration enumeration : tables.get(0).getEnumerations()) {
-            TemplateUtils.renderTpl("enum", enumeration);
+        for (Table table : tables) {
+            TemplateUtils.renderTpl("bean-class-service", table);
+            TemplateUtils.renderTpl("bean-class-mapper", table);
+            TemplateUtils.renderTpl("bean-class", table);
+            TemplateUtils.renderTpl("bean-class-ids-request", table);
+            TemplateUtils.renderTpl("create-bean-class-request", table);
+            TemplateUtils.renderTpl("update-bean-class-request", table);
+            TemplateUtils.renderTpl("page-bean-class-request", table);
+            TemplateUtils.renderTpl("bean-class-data", table);
+
+            for (Enumeration enumeration : table.getEnumerations()) {
+                TemplateUtils.renderTpl("enum", enumeration);
+            }
         }
     }
 

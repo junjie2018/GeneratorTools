@@ -2,20 +2,19 @@ package com.example.generator.tools.utils;
 
 import com.example.generator.tools.directives.FragmentDirective;
 import com.example.generator.tools.directives.IncludeDirective;
-import com.example.generator.tools.directives.NoSpaceLineDiretive;
 import com.example.generator.tools.domain.Enumeration;
 import com.example.generator.tools.domain.Table;
+import com.example.generator.tools.properties.PackagesProperties;
 import com.example.generator.tools.properties.ProjectProperties;
 import com.example.generator.tools.properties.TemplateConfigsProperties;
 import com.example.generator.tools.properties.ToolsProperties;
-import com.example.generator.tools.utils.writer.WriterWithOnlyOneSpaceLine;
+import com.example.generator.tools.utils.writer.WriterWithJalopy;
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapperBuilder;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -38,6 +37,7 @@ public class TemplateUtils implements ApplicationContextAware {
     private static TemplateConfigsProperties templateConfigsProperties;
     private static ProjectProperties projectProperties;
     private static ToolsProperties toolsProperties;
+    private static PackagesProperties packagesProperties;
 
     private static Configuration configuration;
 
@@ -52,6 +52,7 @@ public class TemplateUtils implements ApplicationContextAware {
         templateConfigsProperties = applicationContext.getBean(TemplateConfigsProperties.class);
         projectProperties = applicationContext.getBean(ProjectProperties.class);
         toolsProperties = applicationContext.getBean(ToolsProperties.class);
+        packagesProperties = applicationContext.getBean(PackagesProperties.class);
 
         // 通过profiles active得到项目名称
         String[] activeProfiles = applicationContext.getEnvironment().getActiveProfiles();
@@ -153,7 +154,6 @@ public class TemplateUtils implements ApplicationContextAware {
         configuration.setObjectWrapper(new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_31).build());
         configuration.setSharedVariable("fragment", new FragmentDirective());
         configuration.setSharedVariable("include", new IncludeDirective());
-        configuration.setSharedVariable("noSpaceLine", new NoSpaceLineDiretive());
         configuration.setTemplateLoader(stringTemplateLoader);
     }
 
@@ -212,7 +212,7 @@ public class TemplateUtils implements ApplicationContextAware {
             throw new RuntimeException("获取模板信息失败");
         }
 
-        template.process(renderData, new WriterWithOnlyOneSpaceLine(new FileWriter(outputFilePath.toString())));
+        template.process(renderData, new WriterWithJalopy(new FileWriter(outputFilePath.toString())));
     }
 
     private static Map<String, Object> initMap(TemplateConfigsProperties.TemplateConfig templateConfig, Table table) {
@@ -230,6 +230,9 @@ public class TemplateUtils implements ApplicationContextAware {
         // TemplatesProperties.TemplateConfig
         renderDataMap.put("packet", templateConfig.getPacket());
         renderDataMap.put("packetsToImport", templateConfig.getPacketsToImport());
+
+        // PackagesProperties
+        renderDataMap.put("packagesProperties", packagesProperties);
 
         return renderDataMap;
     }

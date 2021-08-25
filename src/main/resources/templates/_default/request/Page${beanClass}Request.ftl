@@ -4,9 +4,9 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 
 <#if packetsToImport??>
-<#list packetsToImport as packetToImport>
-import ${packetToImport};
-</#list>
+    <#list packetsToImport as packetToImport>
+        import ${packetToImport};
+    </#list>
 </#if>
 
 @Data
