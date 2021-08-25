@@ -11,9 +11,9 @@ import java.util.List;
 import java.time.LocalDateTime;
 
 <#if packetsToImport??>
-<#list packetsToImport as packetToImport>
-import ${packetToImport};
-</#list>
+    <#list packetsToImport as packetToImport>
+        import ${packetToImport};
+    </#list>
 </#if>
 
 @Service

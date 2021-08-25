@@ -16,35 +16,26 @@ public class ${beanClass}Data {
 
     <#list columns as column>
 
+        <#if column.enumerations??>
+            /**
+             * ${column.comment}
+             *
+             * @see ${packagesProperties.enums}.${column.enumerations.enumClass}#value
+             */
+            private ${column.enumerations.itemType} ${column.beanObject};<#continue>
+        </#if>
 
+        <#if column.internalClassInfo??>
+            /**
+             * ${column.comment}
+             */
+            private JSONObject ${column.beanObject};<#continue>
+        </#if>
 
-    <#if column.enumerations??>
-
-    /**
-     * ${column.comment}
-     *
-     * @see ${packagesProperties.enums}.${column.enumerations.enumClass}#value
-     */
-    private ${column.enumerations.itemType} ${column.beanObject};
-
-    <#elseif column.internalClassInfo??>
-
-    /**
-     * ${column.comment}
-     */
-    private JSONObject ${column.beanObject};
-
-    <#else>
-
-    /**
-     * ${column.comment}
-     */
-    private ${column.fieldType} ${column.beanObject};
-
-    </#if>
-
-
+        /**
+         * ${column.comment}
+         */
+        private ${column.fieldType} ${column.beanObject};
 
     </#list>
-
 }

@@ -28,37 +28,30 @@ public class Update${beanClass}Request {
 
         <#-- 枚举类型 -->
         <#if column.enumeration??>
+            /**
+             * ${column.comment}
+             *
+             * @see ${packagesProperties.enums}.${column.enumeration.enumClass}#value
+             */
+            private ${column.enumeration.itemType} ${column.beanObject};<#continue>
+        </#if>
 
-        /**
-         * ${column.comment}
-         *
-         * @see ${packagesProperties.enums}.${column.enumeration.enumClass}#value
-         */
+        <#-- 对象类型 -->
+        <#if column.internalClassInfo??>
+            /**
+             * ${column.comment}
+             */
+            private JSONObject ${column.beanObject};<#continue>
+        </#if>
 
-            <#if column.logicName == "id">
-        @NotBlank
-            </#if>
-
-        private ${column.enumeration.itemType} ${column.beanObject};
-
-        <#elseif column.internalClassInfo??>
-
-        /**
-         * ${column.comment}
-         */
-        private JSONObject ${column.beanObject};
-
-        <#else>
-
+        <#-- 其他类型 -->
         /**
          * ${column.comment}
          */
-            <#if column.logicName == "id">
-        @NotBlank
-            </#if>
-
+        <#if column.logicName == "id">
+            @NotBlank
+        </#if>
         private ${column.fieldType} ${column.beanObject};
 
-        </#if>
     </#list>
 }

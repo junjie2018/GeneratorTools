@@ -33,7 +33,7 @@ public class Create${beanClass}Request {
              *
              * @see ${packagesProperties.enums}.${column.enumeration.enumClass}#value
              */
-            private ${column.enumeration.itemType} ${column.beanObject};<#continue/>
+            private ${column.enumeration.itemType} ${column.beanObject};<#continue>
         </#if>
 
         <#-- 对象类型 -->
@@ -41,7 +41,7 @@ public class Create${beanClass}Request {
             /**
              * ${column.comment}
              */
-            private JSONObject ${column.beanObject};<#continue/>
+            private JSONObject ${column.beanObject};<#continue>
         </#if>
 
         <#-- 普通字段类型 -->
