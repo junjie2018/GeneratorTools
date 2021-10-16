@@ -1,8 +1,5 @@
 <#--controller方法-->
-<@fragment name="createBeanClass">
-
-    <@dependency />
-
+<@fragment name="ControllerMethod">
     /**
      * 创建${entityName}
      *

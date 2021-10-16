@@ -1,15 +1,16 @@
 package com.example.generator.tools.utils.writer;
 
-import de.hunsicker.jalopy.Jalopy;
+import com.google.googlejavaformat.java.Formatter;
+import com.google.googlejavaformat.java.FormatterException;
 
 import java.io.IOException;
 import java.io.Writer;
 
-public class WriterWithJalopy extends Writer {
+public class WriterWithGoogleJavaFormat extends Writer {
     private final Writer writer;
     private StringBuilder stringBuilder;
 
-    public WriterWithJalopy(Writer writer) {
+    public WriterWithGoogleJavaFormat(Writer writer) {
         this.writer = writer;
         this.stringBuilder = new StringBuilder();
     }
@@ -24,11 +25,13 @@ public class WriterWithJalopy extends Writer {
     public void flush() throws IOException {
         String inputStr = stringBuilder.toString();
 
-        Jalopy jalopy = new Jalopy();
-        jalopy.setEncoding("UTF-8");
-        jalopy.setInput(inputStr, "");
-        jalopy.setOutput(writer);
-        jalopy.format();
+        try {
+            String formattedSource = new Formatter().formatSource(inputStr);
+            writer.write(formattedSource);
+            writer.flush();
+        } catch (FormatterException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

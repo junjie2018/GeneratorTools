@@ -11,10 +11,11 @@ template-configs:
   bean-class-controller:
     template: "${beanClass}Controller.ftl"
     module: ${project.server-module}
-    packet: ${packages.service}
+    packet: ${packages.controller}
     packets-to-import:
-      - ${packages.request}
-      - ${packages.response}
+      - "${packages.request}.*"
+      - "${packages.response}.*"
+      - "${packages.service}.*"
 
   bean-class:
     template: "${beanClass}.ftl"

@@ -8,7 +8,7 @@ import com.example.generator.tools.properties.PackagesProperties;
 import com.example.generator.tools.properties.ProjectProperties;
 import com.example.generator.tools.properties.TemplateConfigsProperties;
 import com.example.generator.tools.properties.ToolsProperties;
-import com.example.generator.tools.utils.writer.WriterWithJalopy;
+import com.example.generator.tools.utils.writer.WriterWithGoogleJavaFormat;
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapperBuilder;
@@ -212,7 +212,7 @@ public class TemplateUtils implements ApplicationContextAware {
             throw new RuntimeException("获取模板信息失败");
         }
 
-        template.process(renderData, new WriterWithJalopy(new FileWriter(outputFilePath.toString())));
+        template.process(renderData, new WriterWithGoogleJavaFormat(new FileWriter(outputFilePath.toString())));
     }
 
     private static Map<String, Object> initMap(TemplateConfigsProperties.TemplateConfig templateConfig, Table table) {

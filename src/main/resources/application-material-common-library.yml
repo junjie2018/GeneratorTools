@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: dev.DB
+    url: jdbc:postgresql://192.168.19.12:5432/material_common_library?stringtype=unspecified
+
+project:
+  root-directory: 'D:\Project\material-common-library'
+  server-module: mcl-server
+  common-module: mcl-common
+  table-prefix: t_
+
+tables:
+  - logic-name: t_common_material
+  - logic-name: t_material_type
+
+packages:
+  service: com.sdstc.mcl.server.service
+  mapper: com.sdstc.mcl.server.mapper
+  entity: com.sdstc.mcl.server.entity
+  request: com.sdstc.mcl.common.request
+  response: com.sdstc.mcl.common.response
+  enums: com.sdstc.mcl.common.enums
+  controller: com.sdstc.mcl.server.controller
