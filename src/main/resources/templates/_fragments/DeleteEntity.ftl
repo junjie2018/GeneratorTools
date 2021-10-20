@@ -6,7 +6,7 @@
      */
     @Transactional
     @PostMapping("/delete${beanClass}")
-    public ResponseVo delete${beanClass}(
+    public ResponseVo<Void> delete${beanClass}(
             @RequestHeader(APICons.HEADER_TENANT_ID) String tenantId,
             @RequestBody @Valid ${beanClass}IdsRequest request) {
 

@@ -6,7 +6,7 @@
      */
     @PostMapping("/update${beanClass}")
     @Transactional
-    public ResponseVo update${beanClass}(
+    public ResponseVo<Void> update${beanClass}(
             @RequestHeader(APICons.HEADER_TENANT_ID) String tenantId,
             @RequestBody @Valid Update${beanClass}Request request) {
 

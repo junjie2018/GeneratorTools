@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 public class ${beanClass}IdsRequest {
     /**
-     * 需要删除的${entityName}Id
+     * ${entityName}Id
      */
     @NotNull
     private List<String> ids;
