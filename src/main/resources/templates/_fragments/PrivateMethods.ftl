@@ -9,7 +9,7 @@
         ${beanClass} ${beanObject} = ${beanObject}Mapper.selectOne(queryWrapper);
 
         if (${beanObject} == null) {
-            throw new RuntimeException("Wrong");
+            throw new BusinessException();
         }
 
         return ${beanObject};
@@ -27,7 +27,7 @@
         List<${beanClass}> ${beanObject}List = ${beanObject}Mapper.selectList(queryWrapper);
 
         if (${beanObject}List.size() != ids.size()) {
-            throw new RuntimeException("Wrong");
+            throw new BusinessException();
         }
 
         return ${beanObject}List;
@@ -44,7 +44,7 @@
         List<${beanClass}> ${beanObject}List = ${beanObject}Mapper.selectList(queryWrapper);
 
         if (${beanObject}List.size() != ids.size()) {
-            throw new RuntimeException("Wrong");
+            throw new BusinessException();
         }
 
         return ${beanObject}List;
@@ -62,7 +62,7 @@
         ${beanClass} ${beanObject} = ${beanObject}Mapper.selectOne(queryWrapper);
 
         if (${beanObject} == null) {
-            throw new RuntimeException("Wrong");
+            throw new BusinessException();
         }
 
         return ${beanObject};

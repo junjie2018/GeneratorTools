@@ -78,3 +78,4 @@ template-configs:
       - "${packages.mapper}.*"
       - "${packages.enums}.*"
       - "com.sdstc.core.utils.PageUtils"
+      - "com.sdstc.core.exception.BusinessException"

@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: dev.DB
+    url: jdbc:postgresql://192.168.19.12:5432/pdm?stringtype=unspecified
+
+project:
+  root-directory: 'C:\Users\wujj\Desktop\NewProjects\pdm'
+  server-module: pdm-server
+  common-module: pdm-common
+  table-prefix: t_
+
+tables:
+  - logic-name: t_development_season_node
+  - logic-name: t_development_season_config
+
+
+packages:
+  service: com.sdstc.pdm.server.service
+  mapper: com.sdstc.pdm.server.mapper
+  entity: com.sdstc.pdm.server.entity
+  request: com.sdstc.pdm.common.request
+  response: com.sdstc.pdm.common.response
+  enums: com.sdstc.pdm.common.enums
+  controller: com.sdstc.pdm.server.controller
+

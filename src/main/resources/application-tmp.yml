@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: dev.DB
+    url: jdbc:postgresql://192.168.19.12:5432/trend_model_platform?stringtype=unspecified
+
+project:
+  root-directory: 'C:\Users\wujj\Desktop\NewProjects\TrendModelPlatform'
+  server-module: tmp-server
+  common-module: tmp-common
+  table-prefix: t_
+
+tables:
+  - logic-name: t_trend_model_platform
+
+packages:
+  service: com.sdstc.tmp.server.service
+  mapper: com.sdstc.tmp.server.mapper
+  entity: com.sdstc.tmp.server.entity
+  request: com.sdstc.tmp.common.request
+  response: com.sdstc.tmp.common.response
+  enums: com.sdstc.tmp.common.enums
+  controller: com.sdstc.tmp.server.controller
