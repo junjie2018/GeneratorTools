@@ -27,9 +27,7 @@ public class TMPGenerator {
 
         for (Table table : tables) {
 
-            if (!table.getLogicName().equals("t_trend_model")
-//                    && !table.getLogicName().equals("t_development_season_config")
-            ) {
+            if (table.getLogicName().equals("t_trend_model")) {
                 continue;
             }
 
