@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: 0123456
+    url: jdbc:mariadb://mariadb-0.mariadb.base.svc.cluster.local:3306/rbac
+
+project:
+  root-directory: 'D:\ProjectsForWork\RBAC2'
+  server-module: ''
+  common-module: ''
+  table-prefix: sys_
+
+tables:
+  - logic-name: t_trend_model_platform
+
+packages:
+  service: com.sdstc.tmp.server.service
+  mapper: com.sdstc.tmp.server.mapper
+  entity: com.sdstc.tmp.server.entity
+  request: com.sdstc.tmp.common.request
+  response: com.sdstc.tmp.common.response
+  enums: com.sdstc.tmp.common.enums
+  controller: com.sdstc.tmp.server.controller
