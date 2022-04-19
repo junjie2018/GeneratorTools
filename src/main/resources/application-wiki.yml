@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://mariadb-0.mariadb.base.svc.cluster.local:3306/my_wiki
+    username: root
+    password: "123456"
+
+project:
+  root-directory: 'C:\Users\wujj\Desktop\MyWiki'
+  server-module: MyWiki
+  common-module: MyWiki
+  table-prefix: ''
+
+tables:
+  - logic-name: t_trend_model_platform
+
+packages:
+  service: junjie.fun.mywiki.service
+  service-impl: junjie.fun.mywiki.service.impl
+  mapper: junjie.fun.mywiki.mapper
+  entity: junjie.fun.mywiki.entity
+  request: junjie.fun.mywiki.request
+  response: junjie.fun.mywiki.response
+  enums: junjie.fun.mywiki.enums
+  controller: junjie.fun.mywiki.controller

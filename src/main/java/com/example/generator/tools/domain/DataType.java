@@ -7,6 +7,7 @@ import lombok.Getter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 @SuppressWarnings("ArraysAsListWithZeroOrOneArgument")
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -44,7 +45,7 @@ public enum DataType {
     public static DataType convert(String typeName) {
 
         for (DataType columnType : DataType.values()) {
-            if (columnType.getTypeNameFromJdbcTemplate().contains(typeName)) {
+            if (columnType.getTypeNameFromJdbcTemplate().contains(typeName.toLowerCase())) {
                 return columnType;
             }
         }

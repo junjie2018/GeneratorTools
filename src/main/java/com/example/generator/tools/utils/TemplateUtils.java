@@ -256,6 +256,8 @@ public class TemplateUtils implements ApplicationContextAware {
 
     }
 
+
+
     private static String getOutputFileName(String outputFilePattern, Map<String, Object> renderData) {
         // 临时方案，以后会换成正则
         if (outputFilePattern.contains("${beanClass}")) {

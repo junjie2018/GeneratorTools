@@ -2,6 +2,7 @@ package com.example.generator.tools.utils;
 
 import com.example.generator.tools.domain.*;
 import com.example.generator.tools.domain.Enumeration.EnumerationItem;
+import com.example.generator.tools.properties.ProjectProperties;
 import com.example.generator.tools.properties.TableProperties;
 import com.example.generator.tools.properties.ToolsProperties;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 
+import static com.example.generator.tools.database.disposer.PGDisposer.*;
 import static com.example.generator.tools.utils.AssertUtils.*;
 import static com.example.generator.tools.constant.SystemConstant.*;
 import static com.example.generator.tools.utils.JStringUtils.*;
@@ -35,6 +37,7 @@ public class TableUtils implements ApplicationContextAware {
     private static JdbcTemplate jdbcTemplate;
     private static TableProperties tableProperties;
     private static ToolsProperties toolsProperties;
+    private static ProjectProperties projectProperties;
 
     public static List<Table> generateTablesFormDB() {
 
@@ -42,6 +45,8 @@ public class TableUtils implements ApplicationContextAware {
         List<Table> tables = new ArrayList<>();
 
         try {
+
+            List<TableInDb> tableInDbs = getTableInDbs();
 
             for (TableInDb tableInDb : getTableInDbs()) {
 
@@ -76,22 +81,7 @@ public class TableUtils implements ApplicationContextAware {
                         internalBeans.add(internalBean);
 
                     } else {
-                        switch (DataType.convert(columnInTable.getType())) {
-                            case INT:
-                                fieldType = JAVA_TYPE_INTEGER;
-                                break;
-                            case VARCHAR:
-                                fieldType = JAVA_TYPE_STRING;
-                                break;
-                            case DATE:
-                                fieldType = JAVA_TYPE_DATE;
-                                break;
-                            case NUMERIC:
-                                fieldType = JAVA_TYPE_DECIMAL;
-                                break;
-                            default:
-                                throw new RuntimeException("未准备的类型");
-                        }
+
                     }
 
                     columns.add(Column.builder()
@@ -200,9 +190,12 @@ public class TableUtils implements ApplicationContextAware {
                 .getConnection()
                 .getMetaData();
 
-        ResultSet tables = dbMetaData.getTables(
-                null, null,
-                null, new String[]{PG_TYPES_TABLE});
+        // 原PG写法，因为在Maria中不支持这种写法，故修改为如下写法
+//         ResultSet tables = dbMetaData.getTables(
+//                null, null,
+//                null, new String[]{PG_TYPES_TABLE});
+
+        ResultSet tables = dbMetaData.getTables(null, null, projectProperties.getTablePrefix() + "%", null);
 
         // 获取表信息
         while (tables.next()) {
@@ -267,5 +260,6 @@ public class TableUtils implements ApplicationContextAware {
         jdbcTemplate = applicationContext.getBean(JdbcTemplate.class);
         tableProperties = applicationContext.getBean(TableProperties.class);
         toolsProperties = applicationContext.getBean(ToolsProperties.class);
+        projectProperties = applicationContext.getBean(ProjectProperties.class);
     }
 }
