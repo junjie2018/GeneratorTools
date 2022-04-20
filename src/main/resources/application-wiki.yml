@@ -8,10 +8,8 @@ spring:
 project:
   root-directory: 'C:\Users\wujj\Desktop\MyWiki\MyWiki'
   table-prefix: 't_'
-
-templates:
-  service:
-    module: ''
+  server-module: ""
+  common-module: ""
 
 tables:
   - logic-name: t_trend_model_platform

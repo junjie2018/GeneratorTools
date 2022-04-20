@@ -17,20 +17,14 @@ public class MariaTypeDisposer implements TypeDisposer {
                 return Type.LONG;
             case "VARCHAR":
             case "CHAR":
+            case "MEDIUMTEXT":
                 return Type.STRING;
             case "INT":
                 return Type.INTEGER;
-            case "int2":
-            case "int4":
-            case "int8":
-            case "numeric":
-                return Type.LONG;
-            case "date":
-            case "timestamp":
-            case "timestamptz":
+            case "TIMESTAMP":
                 return Type.LOCAL_DATE_TIME;
             default:
-                throw new RuntimeException("未准备的类型");
+                throw new RuntimeException("未准备的类型：" + column.getType());
         }
     }
 }

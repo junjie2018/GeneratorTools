@@ -61,7 +61,7 @@ public interface EnumInfo {
      * 要求：首字母大写，下划线转驼峰
      */
     default String getEnumClass() {
-        return getColumnInfo().getColumnClass();
+        return getColumnInfo().getColumnClass() + "Enum";
     }
 
     /**
@@ -69,7 +69,7 @@ public interface EnumInfo {
      * 要求：首字母大写，下划线转驼峰
      */
     default String getEnumObject() {
-        return getColumnInfo().getColumnObject();
+        return getColumnInfo().getColumnObject() + "Enum";
     }
 
     /**

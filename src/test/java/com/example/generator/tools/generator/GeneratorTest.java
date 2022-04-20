@@ -69,15 +69,17 @@ class GeneratorTest {
 
 
         for (TableInfo tableInfo : tableInfos) {
-//            TemplateConfigsProperties.TemplateConfig templateConfig = templateConfigsProperties
-//                    .getTemplateConfigs()
-//                    .get("bean-class-service");
-
-//            Map<String, Object> stringObjectMap = generator.buildMap(tableInfo);
-//            String outputFileName = TemplateUtils.getOutputFilename("${tableClass}Controller.java", stringObjectMap);
-            System.out.println("");
 //            generator.renderTpl("tips", tableInfo);
+            generator.renderTpl("entity", tableInfo);
+            generator.renderTpl("entity-data", tableInfo);
+            generator.renderTpl("create-entity-request", tableInfo);
+            generator.renderTpl("update-entity-request", tableInfo);
+            generator.renderTpl("page-entity-request", tableInfo);
+
+            generator.renderTpl("mapper", tableInfo);
             generator.renderTpl("service", tableInfo);
+//            generator.renderTpl("service-impl", tableInfo);
+            generator.renderTpl("controller", tableInfo);
         }
 
 

@@ -198,6 +198,9 @@ public class TemplateUtils implements ApplicationContextAware {
             else {
                 templateInFreemarker.process(renderData, new FileWriter(outputFilePath.toString()));
             }
+
+            log.info("渲染模板{}成功，生成文件位置{}", template.getTemplate(), outputFilePath);
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

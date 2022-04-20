@@ -1,7 +1,8 @@
-package junjie.fun.mywiki.service;
+package ${packet};
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.stereotype.Service;
+import junjie.fun.mywiki.common.response.PageData;
 
 import java.util.List;
 
@@ -10,14 +11,28 @@ import java.util.List;
 @Service
 public interface ${tableClass}Service extends IService<${tableClass}> {
 
+    /**
+     * 创建${tableComment}
+     */
     Long create${tableClass}(Create${tableClass}Request request);
 
+    /**
+     * 删除${tableComment}
+     */
     void delete${tableClass}s(List<Long> ${tableObject}Ids);
 
+    /**
+     * 编辑${tableComment}
+     */
     Long update${tableClass}(Update${tableClass}Request request);
 
+    /**
+     * 分页查找${tableComment}
+     */
     PageData<${tableClass}Data> page${tableClass}(Page${tableClass}Request request);
 
+    /**
+     * 根据Id数组查找${tableComment}
+     */
     List<${tableClass}Data> query${tableClass}s(List<Long> ${tableObject}Ids);
-
 }

@@ -16,14 +16,61 @@ templates:
   service:
     template: "Service.ftl"
     output-filename: '${tableClass}Service.java'
-    # output-directory: "C:\\Users\\wujj\\Desktop\\TemplateTest"
     module: ${project.server-module}
     packet: ${packages.service}
     packets-to-import:
       - "${packages.request}.*"
       - "${packages.response}.*"
-      - "${packages.response-data}.*"
+      - "${packages.entity}.*"
+
+  mapper:
+    template: "Mapper.ftl"
+    output-filename: '${tableClass}Mapper.java'
+    module: ${project.server-module}
+    packet: ${packages.mapper}
+    packets-to-import:
+      - "${packages.entity}.*"
+
+  controller:
+    template: "Controller.ftl"
+    output-filename: '${tableClass}Controller.java'
+    module: ${project.server-module}
+    packet: ${packages.controller}
+    packets-to-import:
+      - "${packages.request}.*"
+      - "${packages.response}.*"
       - "${packages.service}.*"
+
+  entity:
+    template: "Entity.ftl"
+    output-filename: '${tableClass}.java'
+    module: ${project.server-module}
+    packet: ${packages.entity}
+
+  create-entity-request:
+    template: "CreateEntityRequest.ftl"
+    output-filename: 'Create${tableClass}Request.java'
+    module: ${project.server-module}
+    packet: ${packages.request}
+
+  update-entity-request:
+    template: "UpdateEntityRequest.ftl"
+    output-filename: 'Update${tableClass}Request.java'
+    module: ${project.server-module}
+    packet: ${packages.request}
+
+  page-entity-request:
+    template: "PageEntityRequest.ftl"
+    output-filename: 'Page${tableClass}Request.java'
+    module: ${project.server-module}
+    packet: ${packages.request}
+
+  entity-data:
+    template: "EntityData.ftl"
+    output-filename: '${tableClass}Data.java'
+    module: ${project.server-module}
+    packet: ${packages.response}
+    packets-to-import:
       - "${packages.entity}.*"
 
 
