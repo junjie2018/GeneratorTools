@@ -75,10 +75,11 @@ class GeneratorTest {
             generator.renderTpl("create-entity-request", tableInfo);
             generator.renderTpl("update-entity-request", tableInfo);
             generator.renderTpl("page-entity-request", tableInfo);
-
+//
             generator.renderTpl("mapper", tableInfo);
+            generator.renderTpl("mapper-xml", tableInfo);
             generator.renderTpl("service", tableInfo);
-//            generator.renderTpl("service-impl", tableInfo);
+            generator.renderTpl("service-impl", tableInfo);
             generator.renderTpl("controller", tableInfo);
         }
 

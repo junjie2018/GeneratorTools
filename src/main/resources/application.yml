@@ -23,11 +23,33 @@ templates:
       - "${packages.response}.*"
       - "${packages.entity}.*"
 
+  service-impl:
+    template: "ServiceImpl.ftl"
+    output-filename: '${tableClass}ServiceImpl.java'
+    module: ${project.server-module}
+    packet: ${packages.service-impl}
+    packets-to-import:
+      - "${packages.request}.*"
+      - "${packages.response}.*"
+      - "${packages.entity}.*"
+      - "${packages.service}.*"
+      - "${packages.mapper}.*"
+
   mapper:
     template: "Mapper.ftl"
     output-filename: '${tableClass}Mapper.java'
     module: ${project.server-module}
     packet: ${packages.mapper}
+    packets-to-import:
+      - "${packages.entity}.*"
+
+  mapper-xml:
+    template: "MapperXml.ftl"
+    output-filename: '${tableClass}Mapper.xml'
+    module: ${project.server-module}
+    packet: 'mapper'
+    resource-directory: true
+    java-format: false
     packets-to-import:
       - "${packages.entity}.*"
 
@@ -120,7 +142,7 @@ template-configs:
     packet: ${packages.enums}
 
   bean-class-mapper:
-    template: "${beanClass}Mapper.ftl"
+    template: "${beanClass}MapperXml.ftl"
     module: ${project.server-module}
     packet: ${packages.mapper}
     packets-to-import:

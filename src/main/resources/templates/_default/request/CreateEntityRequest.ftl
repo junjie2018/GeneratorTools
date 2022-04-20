@@ -12,7 +12,8 @@ public class Create${tableClass}Request {
     <#if columnInfo.columnName == "id"
         || columnInfo.columnName == "creator"
         || columnInfo.columnName == "modifier"
-        || columnInfo.columnName == "delete_status"
+        || columnInfo.columnName == "is_delete"
+        || columnInfo.columnName == "version"
         || columnInfo.columnName == "create_time"
         || columnInfo.columnName == "modify_time">
         <#continue>

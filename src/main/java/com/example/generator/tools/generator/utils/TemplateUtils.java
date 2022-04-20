@@ -207,12 +207,25 @@ public class TemplateUtils implements ApplicationContextAware {
     }
 
     private static Path getOutputFileDirectory(TemplateProperties.Template template) {
-        return template.getOutputDirectory() != null ?
-                template.getOutputDirectory() :
-                Paths.get(projectProperties.getRootDirectory(),
-                        template.getModule(),
-                        "src/main/java",
-                        template.getPacket().replace('.', '/'));
+
+        // 如果配置了outputDirectory，则返回outputDirectory
+        if (template.getOutputDirectory() != null) {
+            return template.getOutputDirectory();
+        }
+
+        // 如果是资源文件，则拼接资源文件夹地址
+        if (template.getResourceDirectory()) {
+            return Paths.get(projectProperties.getRootDirectory(),
+                    template.getModule(),
+                    "src/main/resources",
+                    template.getPacket().replace('.', '/'));
+        }
+
+        // 如果以上都不是，则拼接源码文件夹地址
+        return Paths.get(projectProperties.getRootDirectory(),
+                template.getModule(),
+                "src/main/java",
+                template.getPacket().replace('.', '/'));
     }
 
     private static String getOutputFilename(TemplateProperties.Template template, Map<String, Object> renderData) {

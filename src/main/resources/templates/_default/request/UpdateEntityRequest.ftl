@@ -14,7 +14,8 @@ public class Update${tableClass}Request {
     <#-- 忽略字段 -->
     <#if columnInfo.columnName == "creator"
         || columnInfo.columnName == "modifier"
-        || columnInfo.columnName == "delete_status"
+        || columnInfo.columnName == "is_delete"
+        || columnInfo.columnName == "version"
         || columnInfo.columnName == "create_time"
         || columnInfo.columnName == "modify_time">
         <#continue>

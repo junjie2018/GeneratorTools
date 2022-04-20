@@ -57,6 +57,8 @@ public class TemplateProperties implements ApplicationContextAware {
         private List<String> packetsToImport;
 
         private Boolean javaFormat = true;
+
+        private Boolean resourceDirectory = false;
     }
 
 
