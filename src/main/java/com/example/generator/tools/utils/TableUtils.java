@@ -4,7 +4,7 @@ import com.example.generator.tools.domain.*;
 import com.example.generator.tools.domain.Enumeration.EnumerationItem;
 import com.example.generator.tools.properties.ProjectProperties;
 import com.example.generator.tools.properties.TableProperties;
-import com.example.generator.tools.properties.ToolsProperties;
+import com.example.generator.tools.generator.properties.ToolsProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

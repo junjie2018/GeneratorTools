@@ -4,6 +4,7 @@ import com.example.generator.tools.database.domain.Column;
 import com.example.generator.tools.database.domain.Table;
 import com.example.generator.tools.generator.disposer.TypeDisposer;
 import com.example.generator.tools.generator.domain.*;
+import com.example.generator.tools.generator.utils.TemplateUtils;
 
 
 import java.lang.reflect.InvocationTargetException;
@@ -26,7 +27,6 @@ public class Generator {
     private Consumer<? super ColumnInfo> initColumnInfo;
     private BiConsumer<? super ColumnInfo, ? super EnumInfo> initEnumInfo;
     private BiConsumer<? super ColumnInfo, ? super InternalInfo> initInternalInfo;
-
 
 
     public void init(
@@ -157,7 +157,20 @@ public class Generator {
         return result;
     }
 
-    public Map<String, Object> buildMap(TableInfo tableInfo) {
+
+    public void renderTpl(String templateKey, TableInfo tableInfo) {
+        TemplateUtils.renderTpl(templateKey, buildMap(tableInfo));
+    }
+
+    public void renderTpl(String templateKey, EnumInfo enumInfo) {
+        TemplateUtils.renderTpl(templateKey, buildMap(enumInfo));
+    }
+
+    public void renderTpl(String templateKey, InternalInfo internalInfo) {
+        TemplateUtils.renderTpl(templateKey, buildMap(internalInfo));
+    }
+
+    private Map<String, Object> buildMap(TableInfo tableInfo) {
         Map<String, Object> result = new HashMap<>();
 
         result.put("tableName", tableInfo.getTableName());
@@ -173,7 +186,7 @@ public class Generator {
         return result;
     }
 
-    public Map<String, Object> buildMap(EnumInfo enumInfo) {
+    private Map<String, Object> buildMap(EnumInfo enumInfo) {
         Map<String, Object> result = new HashMap<>();
 
         result.put("enumName", enumInfo.getEnumName());
@@ -186,7 +199,7 @@ public class Generator {
         return result;
     }
 
-    public Map<String, Object> buildMap(InternalInfo internalInfo) {
+    private Map<String, Object> buildMap(InternalInfo internalInfo) {
         Map<String, Object> result = new HashMap<>();
 
         result.put("internalName", internalInfo.getInternalName());

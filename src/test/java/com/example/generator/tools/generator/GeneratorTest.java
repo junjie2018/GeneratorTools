@@ -1,39 +1,46 @@
 package com.example.generator.tools.generator;
 
 import com.alibaba.fastjson.JSON;
-import com.example.generator.tools.database.disposer.PGDisposer;
+import com.example.generator.tools.database.disposer.MariaDisposer;
 import com.example.generator.tools.database.domain.Table;
-import com.example.generator.tools.generator.disposer.PGTypeDisposer;
+import com.example.generator.tools.generator.disposer.MariaTypeDisposer;
 import com.example.generator.tools.generator.disposer.TypeDisposer;
 import com.example.generator.tools.generator.domain.*;
+import com.example.generator.tools.generator.utils.TemplateUtils;
 import com.example.generator.tools.properties.ProjectProperties;
 import com.example.generator.tools.properties.TableProperties;
-import com.example.generator.tools.properties.ToolsProperties;
+import com.example.generator.tools.properties.TemplateConfigsProperties;
+import com.example.generator.tools.generator.properties.ToolsProperties;
+import freemarker.template.TemplateException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @SpringBootTest
-@ActiveProfiles(profiles = {"pdm"})
+@ActiveProfiles(profiles = {"wiki"})
 class GeneratorTest {
 
     @Autowired
-    private PGDisposer pgDisposer;
+    private MariaDisposer pgDisposer;
     @Autowired
     private ToolsProperties toolsProperties;
     @Autowired
     private ProjectProperties projectProperties;
     @Autowired
     private TableProperties tableProperties;
+    @Autowired
+    private TemplateConfigsProperties templateConfigsProperties;
 
 
     @Test
-    void doTransfer() {
+    void doTransfer() throws TemplateException, IOException {
         Generator generator = new Generator();
 
         generator.init(
@@ -41,7 +48,7 @@ class GeneratorTest {
                 DefaultColumnInfo.class,
                 DefaultEnumInfo.class,
                 DefaultInternalInfo.class,
-                PGTypeDisposer.class,
+                MariaTypeDisposer.class,
 
                 (table, tableInfo) -> {
                     DefaultTableInfo defaultTableInfo = (DefaultTableInfo) tableInfo;
@@ -57,10 +64,25 @@ class GeneratorTest {
 
         List<Table> tables = pgDisposer.getTables();
 
+
         List<TableInfo> tableInfos = generator.doTransfer(tables);
 
 
+        for (TableInfo tableInfo : tableInfos) {
+//            TemplateConfigsProperties.TemplateConfig templateConfig = templateConfigsProperties
+//                    .getTemplateConfigs()
+//                    .get("bean-class-service");
+
+//            Map<String, Object> stringObjectMap = generator.buildMap(tableInfo);
+//            String outputFileName = TemplateUtils.getOutputFilename("${tableClass}Controller.java", stringObjectMap);
+            System.out.println("");
+//            generator.renderTpl("tips", tableInfo);
+            generator.renderTpl("service", tableInfo);
+        }
+
+
         System.out.println(JSON.toJSONString(tableInfos));
+
 
     }
 

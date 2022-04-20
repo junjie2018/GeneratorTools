@@ -1,4 +1,4 @@
-package com.example.generator.tools.properties;
+package com.example.generator.tools.generator.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

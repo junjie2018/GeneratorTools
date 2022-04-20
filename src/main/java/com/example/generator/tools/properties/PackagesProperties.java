@@ -34,6 +34,11 @@ public class PackagesProperties {
     private String response;
 
     /**
+     * response包
+     */
+    private String responseData;
+
+    /**
      * enums包
      */
     private String enums;

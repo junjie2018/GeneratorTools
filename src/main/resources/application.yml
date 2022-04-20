@@ -1,15 +1,58 @@
 tools:
   template-directory: 'classpath:templates'
-  enum-comment-pattern: '^([A-Za-z\u4e00-\u9fa5 ]{1,})（(([A-Za-z0-9-]+：[\u4e00-\u9fa5A-Za-z0-9-]{1,}，?)+)）$'
-  number-pattern: '^[0-9]*$'
 
 table:
   prefix: t_
   default-primary-key: id
 
+templates:
+
+  tips:
+    template: "tips.ftl"
+    output-directory: "C:\\Users\\wujj\\Desktop\\TemplateTest"
+    output-filename: "tips.md"
+    java-format: false
+
+  service:
+    template: "Service.ftl"
+    output-filename: '${tableClass}Service.java'
+    # output-directory: "C:\\Users\\wujj\\Desktop\\TemplateTest"
+    module: ${project.server-module}
+    packet: ${packages.service}
+    packets-to-import:
+      - "${packages.request}.*"
+      - "${packages.response}.*"
+      - "${packages.response-data}.*"
+      - "${packages.service}.*"
+      - "${packages.entity}.*"
+
+
+#  controller:
+#    template: "${tableClass}Controller.ftl"
+#    output-filename: "${tableClass}Controller.java"
+#    module: ${project.server-module}
+#    packet: ${packages.controller}
+#    packets-to-import:
+#      - "${packages.request}.*"
+#      - "${packages.response}.*"
+#      - "${packages.service}.*"
+#
+#  entity:
+#    template: "${tableClass}.ftl"
+#    module: ${project.server-module}
+#    packet: ${packages.entity}
+#
+#  enum:
+#    template: "${enumClass}.ftl"
+#    module: ${project.common-module}
+#    packet: ${packages.enums}
+
+
+
+# 废弃
 template-configs:
   bean-class-controller:
-    template: "${beanClass}Controller.ftl"
+    template: "Controller.ftl"
     module: ${project.server-module}
     packet: ${packages.controller}
     packets-to-import:

@@ -6,10 +6,12 @@ spring:
     password: "123456"
 
 project:
-  root-directory: 'C:\Users\wujj\Desktop\MyWiki'
-  server-module: MyWiki
-  common-module: MyWiki
-  table-prefix: ''
+  root-directory: 'C:\Users\wujj\Desktop\MyWiki\MyWiki'
+  table-prefix: 't_'
+
+templates:
+  service:
+    module: ''
 
 tables:
   - logic-name: t_trend_model_platform
@@ -21,5 +23,6 @@ packages:
   entity: junjie.fun.mywiki.entity
   request: junjie.fun.mywiki.request
   response: junjie.fun.mywiki.response
+  response-data: junjie.fun.mywiki.response.data
   enums: junjie.fun.mywiki.enums
   controller: junjie.fun.mywiki.controller

@@ -7,7 +7,7 @@ import com.example.generator.tools.domain.Table;
 import com.example.generator.tools.properties.PackagesProperties;
 import com.example.generator.tools.properties.ProjectProperties;
 import com.example.generator.tools.properties.TemplateConfigsProperties;
-import com.example.generator.tools.properties.ToolsProperties;
+import com.example.generator.tools.generator.properties.ToolsProperties;
 import com.example.generator.tools.utils.writer.WriterWithGoogleJavaFormat;
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
@@ -31,7 +31,7 @@ import static com.example.generator.tools.constant.SystemConstant.FRAGMENT_PATTE
 import static com.example.generator.tools.utils.AssertUtils.assertNotEqual;
 
 @Slf4j
-@Component
+//@Component
 public class TemplateUtils implements ApplicationContextAware {
 
     private static TemplateConfigsProperties templateConfigsProperties;
@@ -39,7 +39,7 @@ public class TemplateUtils implements ApplicationContextAware {
     private static ToolsProperties toolsProperties;
     private static PackagesProperties packagesProperties;
 
-    private static Configuration configuration;
+    private static Configuration CONFIGURATION;
 
     private final static Map<String, Path> FILENAME_TO_FILE_PATH = new HashMap<>();
     private final static Map<String, String> TEMPLATE_KEY_TO_TEMPLATE_CONTENT = new HashMap<>();
@@ -98,7 +98,7 @@ public class TemplateUtils implements ApplicationContextAware {
                             .filter(item -> item.getTemplate().equals(filename))
                             .findFirst();
 
-            if (!templateConfigOptional.isPresent()) {
+            if (templateConfigOptional.isEmpty()) {
                 throw new RuntimeException("模板文件存在，而未在配置文件中配置：" + filename);
             }
         }
@@ -150,12 +150,22 @@ public class TemplateUtils implements ApplicationContextAware {
             stringTemplateLoader.putTemplate(entry.getKey(), entry.getValue());
         }
 
-        configuration = new Configuration(Configuration.VERSION_2_3_31);
-        configuration.setObjectWrapper(new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_31).build());
-        configuration.setSharedVariable("fragment", new FragmentDirective());
-        configuration.setSharedVariable("include", new IncludeDirective());
-        configuration.setTemplateLoader(stringTemplateLoader);
+        CONFIGURATION = new Configuration(Configuration.VERSION_2_3_31);
+        CONFIGURATION.setObjectWrapper(new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_31).build());
+        CONFIGURATION.setSharedVariable("fragment", new FragmentDirective());
+        CONFIGURATION.setSharedVariable("include", new IncludeDirective());
+        CONFIGURATION.setTemplateLoader(stringTemplateLoader);
     }
+
+
+
+
+
+
+
+
+
+
 
     public static void renderTpl(String templateKey, Table table) {
 
@@ -189,10 +199,33 @@ public class TemplateUtils implements ApplicationContextAware {
         }
     }
 
+    public static void processRender(String templateKey,
+                                     Map<String, Object> renderData) throws IOException, TemplateException {
 
-    private static void processRender(String templateKey,
-                                      TemplateConfigsProperties.TemplateConfig templateConfig,
-                                      Map<String, Object> renderData) throws IOException, TemplateException {
+        // 得到输出文件的FileWriter
+//        Path outputDirectorPath = Paths.get(projectProperties.getRootDirectory(),
+//                templateConfig.getModule(),
+//                "src/main/java",
+//                templateConfig.getPacket().replace('.', '/'));
+//
+//        if (!Files.exists(outputDirectorPath)) {
+//            Files.createDirectories(outputDirectorPath);
+//        }
+//
+//        Path outputFilePath =
+//                Paths.get(outputDirectorPath.toString(), getOutputFileName(templateConfig.getTemplate(), renderData));
+
+//        Template template = CONFIGURATION.getTemplate(templateKey);
+//        if (template == null) {
+//            throw new RuntimeException("获取模板信息失败");
+//        }
+//
+//        template.process(renderData, new WriterWithGoogleJavaFormat(new FileWriter(outputFilePath.toString())));
+    }
+
+    public static void processRender(String templateKey,
+                                     TemplateConfigsProperties.TemplateConfig templateConfig,
+                                     Map<String, Object> renderData) throws IOException, TemplateException {
 
         // 得到输出文件的FileWriter
         Path outputDirectorPath = Paths.get(projectProperties.getRootDirectory(),
@@ -207,7 +240,7 @@ public class TemplateUtils implements ApplicationContextAware {
         Path outputFilePath =
                 Paths.get(outputDirectorPath.toString(), getOutputFileName(templateConfig.getTemplate(), renderData));
 
-        Template template = configuration.getTemplate(templateKey);
+        Template template = CONFIGURATION.getTemplate(templateKey);
         if (template == null) {
             throw new RuntimeException("获取模板信息失败");
         }
@@ -241,21 +274,20 @@ public class TemplateUtils implements ApplicationContextAware {
 
         Map<String, Object> renderDataMap = new HashMap<>();
 
-        // Table
-        renderDataMap.put("enumClass", enumeration.getEnumClass());
-        renderDataMap.put("enumObject", enumeration.getEnumObject());
-        renderDataMap.put("comment", enumeration.getComment());
-        renderDataMap.put("itemType", enumeration.getItemType());
-        renderDataMap.put("enumItems", enumeration.getEnumItems());
-
-        // TemplatesProperties.TemplateConfig
-        renderDataMap.put("packet", templateConfig.getPacket());
-        renderDataMap.put("packetsToImport", templateConfig.getPacketsToImport());
+//        // Table
+//        renderDataMap.put("enumClass", enumeration.getEnumClass());
+//        renderDataMap.put("enumObject", enumeration.getEnumObject());
+//        renderDataMap.put("comment", enumeration.getComment());
+//        renderDataMap.put("itemType", enumeration.getItemType());
+//        renderDataMap.put("enumItems", enumeration.getEnumItems());
+//
+//        // TemplatesProperties.TemplateConfig
+//        renderDataMap.put("packet", templateConfig.getPacket());
+//        renderDataMap.put("packetsToImport", templateConfig.getPacketsToImport());
 
         return renderDataMap;
 
     }
-
 
 
     private static String getOutputFileName(String outputFilePattern, Map<String, Object> renderData) {

@@ -15,7 +15,6 @@ public class DefaultTableInfo implements TableInfo {
 
     private String tableName;
     private String tableComment;
-    @Setter
     private List<ColumnInfo> columnInfos;
 
     private String tablePrefix;
@@ -24,6 +23,13 @@ public class DefaultTableInfo implements TableInfo {
     public void init(String tablePrefix, String tableCommentCustom) {
         this.tablePrefix = tablePrefix;
         this.tableCommentCustom = tableCommentCustom;
+    }
+
+    public String getTableComment() {
+        if (StringUtils.isNotBlank(tableCommentCustom)) {
+            return tableCommentCustom;
+        }
+        return tableComment;
     }
 
     @Override

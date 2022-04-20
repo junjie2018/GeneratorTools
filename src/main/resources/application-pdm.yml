@@ -18,6 +18,7 @@ tables:
 
 packages:
   service: com.sdstc.pdm.server.service
+  service-impl: com.sdstc.pdm.server.service.impl
   mapper: com.sdstc.pdm.server.mapper
   entity: com.sdstc.pdm.server.entity
   request: com.sdstc.pdm.common.request
