@@ -14,7 +14,7 @@ public interface ${tableClass}Service extends IService<${tableClass}> {
     /**
      * 创建${tableComment}
      */
-    Long create${tableClass}(Create${tableClass}Request request);
+    Integer create${tableClass}(Create${tableClass}Request request);
 
     /**
      * 删除${tableComment}
@@ -24,7 +24,7 @@ public interface ${tableClass}Service extends IService<${tableClass}> {
     /**
      * 编辑${tableComment}
      */
-    Long update${tableClass}(Update${tableClass}Request request);
+    Integer update${tableClass}(Update${tableClass}Request request);
 
     /**
      * 分页查找${tableComment}

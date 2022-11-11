@@ -1,6 +1,6 @@
 package ${packet};
 
-import junjie.fun.mywiki.common.request.PageRequest;
+import fun.junjie.common.domain.PageRequest;
 import lombok.*;
 
 @Data

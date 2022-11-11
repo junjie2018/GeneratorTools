@@ -20,9 +20,13 @@ public class MariaTypeDisposer implements TypeDisposer {
             case "MEDIUMTEXT":
                 return Type.STRING;
             case "INT":
+            case "TINYINT":
                 return Type.INTEGER;
             case "TIMESTAMP":
+            case "DATETIME":
                 return Type.LOCAL_DATE_TIME;
+            case "DECIMAL":
+                return Type.DECIMAL;
             default:
                 throw new RuntimeException("未准备的类型：" + column.getType());
         }

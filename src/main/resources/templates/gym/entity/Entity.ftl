@@ -1,6 +1,5 @@
 package ${packet};
 
-import junjie.fun.mywiki.common.entity.BaseEntity;
 import java.time.LocalDateTime;
 import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.*;
@@ -12,22 +11,10 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 @TableName("${tableName}")
-public class ${tableClass} extends BaseEntity {
+public class ${tableClass} {
 
 <#list columnInfos as columnInfo>
-
-    <#-- 忽略字段 -->
-    <#if columnInfo.columnName == "id"
-        || columnInfo.columnName == "creator"
-        || columnInfo.columnName == "modifier"
-        || columnInfo.columnName == "is_delete"
-        || columnInfo.columnName == "version"
-        || columnInfo.columnName == "create_time"
-        || columnInfo.columnName == "modify_time">
-        <#continue>
-    </#if>
 
     <#-- 枚举字段 -->
     <#if columnInfo.enumInfo ??>

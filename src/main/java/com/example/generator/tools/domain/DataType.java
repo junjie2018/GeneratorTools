@@ -20,12 +20,12 @@ public enum DataType {
     /**
      * int
      */
-    INT(Arrays.asList("int2", "int4", "int8")),
+    INT(Arrays.asList("int2", "int4", "int8", "int")),
 
     /**
      * numeric
      */
-    NUMERIC(Collections.singletonList("numeric")),
+    NUMERIC(Arrays.asList("numeric", "longtext", "bigint")),
 
     /**
      * jsonb
@@ -35,7 +35,7 @@ public enum DataType {
     /**
      * date
      */
-    DATE(Arrays.asList("date", "timestamp", "timestamptz")),
+    DATE(Arrays.asList("date", "timestamp", "timestamptz", "datetime")),
     ;
 
     @Getter

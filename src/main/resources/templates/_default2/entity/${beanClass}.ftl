@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 
 import java.time.LocalDateTime;
+import java.math.BigDecimal;
 
 import lombok.*;
 

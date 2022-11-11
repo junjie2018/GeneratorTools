@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDateTime;
+import java.math.BigDecimal;
 
 <#if packetsToImport??>
     <#list packetsToImport as packetToImport>

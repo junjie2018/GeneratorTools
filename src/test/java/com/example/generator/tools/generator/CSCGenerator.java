@@ -11,6 +11,10 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
+/**
+ * 不要参考该代码
+ */
+@Deprecated
 @SpringBootTest
 @ActiveProfiles(profiles = {"csc"})
 public class CSCGenerator {

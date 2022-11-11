@@ -1,5 +1,7 @@
 tools:
   template-directory: 'classpath:templates'
+  enum-comment-pattern: '^([A-Za-z\u4e00-\u9fa5 ]{1,})（(([A-Za-z0-9-]+：[\u4e00-\u9fa5A-Za-z0-9-]{1,}，?)+)）$'
+  number-pattern: '^[0-9]*$'
 
 table:
   prefix: t_
@@ -115,79 +117,79 @@ templates:
 #    template: "${enumClass}.ftl"
 #    module: ${project.common-module}
 #    packet: ${packages.enums}
-
-
-
-# 废弃
-template-configs:
-  bean-class-controller:
-    template: "Controller.ftl"
-    module: ${project.server-module}
-    packet: ${packages.controller}
-    packets-to-import:
-      - "${packages.request}.*"
-      - "${packages.response}.*"
-      - "${packages.service}.*"
-
-  bean-class:
-    template: "${beanClass}.ftl"
-    module: ${project.server-module}
-    packet: ${packages.entity}
-    packets-to-import:
-      - "com.sdstc.core.base.model.BaseModel"
-
-  enum:
-    template: "${enumClass}.ftl"
-    module: ${project.common-module}
-    packet: ${packages.enums}
-
-  bean-class-mapper:
-    template: "${beanClass}MapperXml.ftl"
-    module: ${project.server-module}
-    packet: ${packages.mapper}
-    packets-to-import:
-      - "${packages.entity}.*"
-
-  bean-class-ids-request:
-    template: "${beanClass}IdsRequest.ftl"
-    module: ${project.common-module}
-    packet: ${packages.request}
-
-  create-bean-class-request:
-    template: "Create${beanClass}Request.ftl"
-    module: ${project.common-module}
-    packet: ${packages.request}
-    packets-to-import:
-      - "${packages.enums}.*"
-
-  page-bean-class-request:
-    template: "Page${beanClass}Request.ftl"
-    module: ${project.common-module}
-    packet: ${packages.request}
-
-  update-bean-class-request:
-    template: "Update${beanClass}Request.ftl"
-    module: ${project.common-module}
-    packet: ${packages.request}
-    packets-to-import:
-      - "${packages.enums}.*"
-
-  bean-class-data:
-    template: "${beanClass}Data.ftl"
-    module: ${project.common-module}
-    packet: ${packages.response}
-    packets-to-import:
-      - "${packages.enums}.*"
-
-  bean-class-service:
-    template: "${beanClass}Service.ftl"
-    module: ${project.server-module}
-    packet: ${packages.service}
-    packets-to-import:
-      - "${packages.entity}.*"
-      - "${packages.request}.*"
-      - "${packages.response}.*"
-      - "${packages.mapper}.*"
-      - "${packages.enums}.*"
-      - "com.sdstc.core.utils.PageUtils"
-      - "com.sdstc.core.exception.BusinessException"
+#
+#
+#
+## 废弃
+#template-configs:
+#  bean-class-controller:
+#    template: "Controller.ftl"
+#    module: ${project.server-module}
+#    packet: ${packages.controller}
+#    packets-to-import:
+#      - "${packages.request}.*"
+#      - "${packages.response}.*"
+#      - "${packages.service}.*"
+#
+#  bean-class:
+#    template: "${beanClass}.ftl"
+#    module: ${project.server-module}
+#    packet: ${packages.entity}
+#    packets-to-import:
+#      - "com.sdstc.core.base.model.BaseModel"
+#
+#  enum:
+#    template: "${enumClass}.ftl"
+#    module: ${project.common-module}
+#    packet: ${packages.enums}
+#
+#  bean-class-mapper:
+#    template: "${beanClass}MapperXml.ftl"
+#    module: ${project.server-module}
+#    packet: ${packages.mapper}
+#    packets-to-import:
+#      - "${packages.entity}.*"
+#
+#  bean-class-ids-request:
+#    template: "${beanClass}IdsRequest.ftl"
+#    module: ${project.common-module}
+#    packet: ${packages.request}
+#
+#  create-bean-class-request:
+#    template: "Create${beanClass}Request.ftl"
+#    module: ${project.common-module}
+#    packet: ${packages.request}
+#    packets-to-import:
+#      - "${packages.enums}.*"
+#
+#  page-bean-class-request:
+#    template: "Page${beanClass}Request.ftl"
+#    module: ${project.common-module}
+#    packet: ${packages.request}
+#
+#  update-bean-class-request:
+#    template: "Update${beanClass}Request.ftl"
+#    module: ${project.common-module}
+#    packet: ${packages.request}
+#    packets-to-import:
+#      - "${packages.enums}.*"
+#
+#  bean-class-data:
+#    template: "${beanClass}Data.ftl"
+#    module: ${project.common-module}
+#    packet: ${packages.response}
+#    packets-to-import:
+#      - "${packages.enums}.*"
+#
+#  bean-class-service:
+#    template: "${beanClass}Service.ftl"
+#    module: ${project.server-module}
+#    packet: ${packages.service}
+#    packets-to-import:
+#      - "${packages.entity}.*"
+#      - "${packages.request}.*"
+#      - "${packages.response}.*"
+#      - "${packages.mapper}.*"
+#      - "${packages.enums}.*"
+#      - "com.sdstc.core.utils.PageUtils"
+#      - "com.sdstc.core.exception.BusinessException"

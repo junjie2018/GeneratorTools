@@ -3,6 +3,7 @@ package ${packet};
 import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.math.BigDecimal;
 import com.alibaba.fastjson.annotation.JSONField;
 
 <#if packetsToImport??>

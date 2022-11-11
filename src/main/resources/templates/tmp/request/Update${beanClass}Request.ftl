@@ -1,6 +1,7 @@
 package ${packet};
 
 import java.time.LocalDateTime;
+import java.math.BigDecimal;
 import lombok.Data;
 import javax.validation.constraints.NotBlank;
 

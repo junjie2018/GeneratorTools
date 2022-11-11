@@ -191,11 +191,12 @@ public class TableUtils implements ApplicationContextAware {
                 .getMetaData();
 
         // 原PG写法，因为在Maria中不支持这种写法，故修改为如下写法
-//         ResultSet tables = dbMetaData.getTables(
+//        ResultSet tables = dbMetaData.getTables(
 //                null, null,
 //                null, new String[]{PG_TYPES_TABLE});
 
-        ResultSet tables = dbMetaData.getTables(null, null, projectProperties.getTablePrefix() + "%", null);
+        // ResultSet tables = dbMetaData.getTables(null, null, projectProperties.getTablePrefix() + "%", null);
+        ResultSet tables = dbMetaData.getTables(null, null, null, null);
 
         // 获取表信息
         while (tables.next()) {
@@ -204,6 +205,10 @@ public class TableUtils implements ApplicationContextAware {
                     .comment(tables.getString(PG_FLAG_REMARKS))
                     .columns(new ArrayList<>())
                     .build();
+
+            if (!tableInDb.getName().startsWith(projectProperties.getTablePrefix())) {
+                continue;
+            }
 
             // 获取表的列信息
             ResultSet columns = dbMetaData.getColumns(

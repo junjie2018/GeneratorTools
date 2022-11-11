@@ -21,7 +21,7 @@ import java.util.List;
 public class ${tableClass}ServiceImpl extends ServiceImpl<${tableClass}Mapper, ${tableClass}> implements ${tableClass}Service {
 
     @Override
-    public Long create${tableClass}(Create${tableClass}Request request) {
+    public Integer create${tableClass}(Create${tableClass}Request request) {
         ${tableClass} eBookInert = ${tableClass}.builder()
 
                 <#list columnInfos as columnInfo>
@@ -51,7 +51,7 @@ public class ${tableClass}ServiceImpl extends ServiceImpl<${tableClass}Mapper, $
     }
 
     @Override
-    public Long update${tableClass}(Update${tableClass}Request request) {
+    public Integer update${tableClass}(Update${tableClass}Request request) {
         LambdaUpdateWrapper<${tableClass}> updateWrapper = new LambdaUpdateWrapper<${tableClass}>()
                 .eq(${tableClass}::getId, request.getId())
                 <#list columnInfos as columnInfo>

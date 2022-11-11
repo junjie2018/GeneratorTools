@@ -36,7 +36,7 @@ public class ${tableClass}Controller {
      * 创建${tableClass}
      */
     @PostMapping("/${tableObject}/create${tableClass}")
-    public ResponseVo<Long> create${tableClass}(@Valid @RequestBody Create${tableClass}Request request) {
+    public ResponseVo<Integer> create${tableClass}(@Valid @RequestBody Create${tableClass}Request request) {
         return ResponseVo.success(${tableObject}Service.create${tableClass}(request));
     }
 
@@ -44,7 +44,7 @@ public class ${tableClass}Controller {
      * 更新${tableClass}
      */
     @PostMapping("/${tableObject}/update${tableClass}")
-    public ResponseVo<Long> update${tableClass}(@Valid @RequestBody Update${tableClass}Request request) {
+    public ResponseVo<Integer> update${tableClass}(@Valid @RequestBody Update${tableClass}Request request) {
         return ResponseVo.success(${tableObject}Service.update${tableClass}(request));
     }
 

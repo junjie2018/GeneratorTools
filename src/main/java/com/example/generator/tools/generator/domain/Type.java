@@ -20,7 +20,7 @@ public enum Type {
             case LONG:
                 return "Long";
             case DECIMAL:
-                return "Decimal";
+                return "BigDecimal";
             case LOCAL_DATE_TIME:
                 return "LocalDateTime";
             default:

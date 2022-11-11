@@ -6,11 +6,10 @@ import com.example.generator.tools.database.domain.Table;
 import com.example.generator.tools.generator.disposer.MariaTypeDisposer;
 import com.example.generator.tools.generator.disposer.TypeDisposer;
 import com.example.generator.tools.generator.domain.*;
-import com.example.generator.tools.generator.utils.TemplateUtils;
+import com.example.generator.tools.generator.properties.ToolsProperties;
 import com.example.generator.tools.properties.ProjectProperties;
 import com.example.generator.tools.properties.TableProperties;
 import com.example.generator.tools.properties.TemplateConfigsProperties;
-import com.example.generator.tools.generator.properties.ToolsProperties;
 import freemarker.template.TemplateException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +18,15 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @SpringBootTest
-@ActiveProfiles(profiles = {"wiki"})
-class GeneratorTest {
+@ActiveProfiles(profiles = {"gym"})
+class GymGenerator {
 
     @Autowired
-    private MariaDisposer pgDisposer;
+    private MariaDisposer mariaDisposer;
     @Autowired
     private ToolsProperties toolsProperties;
     @Autowired
@@ -62,7 +60,7 @@ class GeneratorTest {
                     }
                 });
 
-        List<Table> tables = pgDisposer.getTables();
+        List<Table> tables = mariaDisposer.getTables();
 
 
         List<TableInfo> tableInfos = generator.doTransfer(tables);
@@ -76,11 +74,11 @@ class GeneratorTest {
             generator.renderTpl("update-entity-request", tableInfo);
             generator.renderTpl("page-entity-request", tableInfo);
 //
-            generator.renderTpl("mapper", tableInfo);
-            generator.renderTpl("mapper-xml", tableInfo);
-            generator.renderTpl("service", tableInfo);
-            generator.renderTpl("service-impl", tableInfo);
-            generator.renderTpl("controller", tableInfo);
+//            generator.renderTpl("mapper", tableInfo);
+//            generator.renderTpl("mapper-xml", tableInfo);
+//            generator.renderTpl("service", tableInfo);
+//            generator.renderTpl("service-impl", tableInfo);
+//            generator.renderTpl("controller", tableInfo);
         }
 
 

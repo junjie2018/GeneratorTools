@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://106.53.136.171:3306/gym
+    username: root
+    password: "Ji@343!!98234..234dsf23"
+
+project:
+  root-directory: 'D:\桌面\TMPProject\gym-backend'
+  table-prefix: 't_'
+  server-module: ""
+  common-module: ""
+
+tables:
+  - logic-name: sys_user
+
+packages:
+  service: fun.junjie.gym.service
+  service-impl: fun.junjie.gym.service.impl
+  mapper: fun.junjie.gym.mapper
+  entity: fun.junjie.gym.entity
+  request: fun.junjie.gym.domain.request
+  response: fun.junjie.gym.domain.response
+  response-data: fun.junjie.gym.domain.response.data
+  enums: fun.junjie.gym.domain.enums
+  controller: fun.junjie.gym.controller

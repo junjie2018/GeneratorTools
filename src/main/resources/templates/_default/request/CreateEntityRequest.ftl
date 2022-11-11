@@ -2,6 +2,7 @@ package ${packet};
 
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.math.BigDecimal;
 
 @Data
 public class Create${tableClass}Request {
